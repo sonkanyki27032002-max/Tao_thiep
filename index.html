@@ -1,0 +1,3994 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#fbf5e9" />
+  <title>Scrapbook Memory Book — Happy Birthday</title>
+  <style>
+    :root {
+      --bg-desk: #e7dccb;
+      --bg-desk-dark: #d4c3aa;
+      --paper-cream: #fbf5e9;
+      --paper-ivory: #fffdf8;
+      --paper-kraft: #e7d6be;
+      --pink-pastel: #f4d6da;
+      --pink-deep: #d68b96;
+      --brown-ink: #4a3525;
+      --brown-soft: #7b5e47;
+      --brown-deep: #2f2015;
+      --gold-accent: #c49a52;
+      --wax-red: #a93f35;
+      --sage-soft: #dce5d1;
+      --shadow-soft: 0 8px 24px rgba(47, 32, 21, 0.14);
+      --shadow-card: 0 14px 38px rgba(47, 32, 21, 0.22);
+      --font-serif: 'Palatino Linotype', 'Book Antiqua', Georgia, 'Times New Roman', serif;
+      --font-hand: 'Segoe Script', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+      --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      min-height: 100dvh;
+      max-width: 100%;
+      font-family: var(--font-sans);
+      color: var(--brown-ink);
+      background-color: var(--bg-desk);
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 253, 248, 0.45), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(164, 134, 102, 0.2), transparent 55%),
+        repeating-linear-gradient(0deg, rgba(110, 82, 56, 0.025) 0px, rgba(110, 82, 56, 0.025) 1px, transparent 1px, transparent 28px),
+        repeating-linear-gradient(90deg, rgba(110, 82, 56, 0.02) 0px, rgba(110, 82, 56, 0.02) 1px, transparent 1px, transparent 28px);
+      overflow-x: clip;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ================= TOP TOOLBAR ================= */
+    .app-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding:
+        max(10px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        10px
+        max(16px, env(safe-area-inset-left));
+      background: rgba(251, 245, 233, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(123, 94, 71, 0.2);
+      box-shadow: 0 3px 14px rgba(47, 32, 21, 0.08);
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--brown-deep);
+    }
+
+    .brand-badge {
+      background: var(--pink-pastel);
+      border: 1px dashed var(--brown-soft);
+      color: var(--brown-deep);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-family: var(--font-hand);
+    }
+
+    .toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      appearance: none;
+      -webkit-appearance: none;
+      touch-action: manipulation;
+      border: 1px solid rgba(123, 94, 71, 0.35);
+      background: var(--paper-ivory);
+      color: var(--brown-ink);
+      padding: 7px 14px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      box-shadow: 0 2px 5px rgba(47, 32, 21, 0.08);
+      font-family: var(--font-sans);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(47, 32, 21, 0.14);
+      background: #fff;
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--brown-ink);
+      color: var(--paper-ivory);
+      border-color: var(--brown-deep);
+    }
+
+    .btn-primary:hover { background: var(--brown-deep); color: #fff; }
+
+    .btn-rose {
+      background: var(--pink-pastel);
+      border-color: var(--pink-deep);
+      color: var(--brown-deep);
+    }
+
+    .btn-rose:hover { background: #efc4cb; }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #d7b472, #b98c44);
+      color: #fff;
+      border-color: #9e7330;
+    }
+
+    .btn-gold:hover { background: linear-gradient(135deg, #dec084, #c5974d); }
+
+    .btn-danger {
+      background: #fae5e5;
+      border-color: #d68b8b;
+      color: #8f2d2d;
+    }
+
+    .btn-sm { padding: 5px 10px; font-size: 0.78rem; border-radius: 8px; }
+
+    .btn.active-tab {
+      background: var(--brown-ink);
+      color: var(--paper-ivory);
+      border-color: var(--brown-deep);
+    }
+
+    body.viewer-only .editor-only { display: none !important; }
+    body.viewer-only .app-toolbar {
+      background: rgba(251, 245, 233, 0.9);
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .app-toolbar {
+        padding:
+          max(8px, env(safe-area-inset-top))
+          max(12px, env(safe-area-inset-right))
+          8px
+          max(12px, env(safe-area-inset-left));
+        gap: 6px;
+      }
+      .brand-title { font-size: 0.92rem; gap: 6px; }
+      .brand-badge { font-size: 0.7rem; padding: 2px 8px; }
+      .toolbar-group { gap: 5px; }
+      .app-toolbar .btn { padding: 5px 9px; font-size: 0.76rem; border-radius: 8px; }
+      body.viewer-only .brand-title > span:first-child { font-size: 0.86rem; }
+      .form-control { font-size: 16px; }
+    }
+
+    /* ================= TOAST ================= */
+    .toast {
+      position: fixed;
+      bottom: max(22px, calc(12px + env(safe-area-inset-bottom)));
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: var(--brown-deep);
+      color: var(--paper-ivory);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      box-shadow: var(--shadow-card);
+      z-index: 2000;
+      opacity: 0;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+      pointer-events: none;
+      max-width: 90vw;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ================= EDITOR VIEW ================= */
+    #editor-view {
+      max-width: 1280px;
+      margin: 22px auto 60px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: 390px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      #editor-view { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--paper-cream);
+      border: 1px solid rgba(123, 94, 71, 0.25);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      border-bottom: 2px dashed rgba(123, 94, 71, 0.22);
+    }
+
+    .panel-title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.18rem;
+      color: var(--brown-deep);
+    }
+
+    .form-field { margin-bottom: 14px; }
+
+    .form-field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--brown-soft);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid rgba(123, 94, 71, 0.35);
+      border-radius: 10px;
+      background: var(--paper-ivory);
+      color: var(--brown-deep);
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--brown-ink);
+      box-shadow: 0 0 0 3px rgba(196, 154, 82, 0.22);
+    }
+
+    textarea.form-control { resize: vertical; min-height: 74px; line-height: 1.45; }
+
+    /* Dropzone */
+    .dropzone {
+      border: 2px dashed rgba(123, 94, 71, 0.42);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      background: rgba(255, 253, 248, 0.72);
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+      position: relative;
+    }
+
+    .dropzone:hover, .dropzone.dragover {
+      background: #fff7ea;
+      border-color: var(--brown-ink);
+    }
+
+    .dropzone input[type="file"] { display: none; }
+
+    .dropzone-hint {
+      font-size: 0.82rem;
+      color: var(--brown-soft);
+      margin: 4px 0 0;
+    }
+
+    .preview-box {
+      margin-top: 10px;
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    .preview-box img {
+      max-height: 140px;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      object-fit: cover;
+    }
+
+    .preview-sig img {
+      max-height: 70px;
+      background: repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%) 50% / 12px 12px;
+      padding: 4px;
+    }
+
+    /* Gallery thumb grid in editor */
+    .editor-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .editor-gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    .editor-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .editor-gallery-remove {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(47, 32, 21, 0.82);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    /* Note color picker */
+    .color-swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .color-swatch {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid rgba(74, 53, 37, 0.25);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .color-swatch.selected {
+      transform: scale(1.15);
+      border-color: var(--brown-deep);
+      box-shadow: 0 0 0 3px rgba(196, 154, 82, 0.45);
+    }
+
+    /* Signature Draw Pad */
+    .sig-pad-wrap {
+      margin-top: 8px;
+      background: #fff;
+      border: 1px solid rgba(123, 94, 71, 0.35);
+      border-radius: 10px;
+      padding: 8px;
+    }
+
+    .sig-pad-canvas {
+      width: 100%;
+      height: 110px;
+      border: 1px dashed rgba(123, 94, 71, 0.3);
+      border-radius: 6px;
+      cursor: crosshair;
+      touch-action: none;
+      display: block;
+      background: #fffdf9;
+    }
+
+    /* Member List in Editor */
+    .members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .member-row {
+      display: grid;
+      grid-template-columns: 28px 64px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      background: var(--paper-ivory);
+      border: 1px solid rgba(123, 94, 71, 0.22);
+      border-radius: 12px;
+      padding: 10px 12px;
+      box-shadow: 0 3px 10px rgba(47, 32, 21, 0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .member-row.dragging { opacity: 0.45; transform: scale(0.98); }
+    .member-row.drag-over { border: 2px dashed var(--gold-accent); background: #fff9ee; }
+
+    .drag-handle {
+      cursor: grab;
+      color: var(--brown-soft);
+      font-size: 1.2rem;
+      user-select: none;
+      text-align: center;
+    }
+
+    .member-row-thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      background: #eee;
+    }
+
+    .member-row-info h4 {
+      margin: 0 0 3px;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .note-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .member-row-wish {
+      margin: 0;
+      font-size: 0.83rem;
+      color: var(--brown-soft);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .member-row-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .member-row-sig {
+      height: 28px;
+      max-width: 75px;
+      object-fit: contain;
+      margin-right: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .member-row {
+        grid-template-columns: 24px 52px 1fr;
+      }
+      .member-row-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ================= MODAL (MEMBER EDIT) ================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(47, 32, 21, 0.55);
+      backdrop-filter: blur(3px);
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-card {
+      background: var(--paper-cream);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 22px;
+      box-shadow: 0 24px 60px rgba(25, 15, 8, 0.35);
+      border: 1px solid rgba(123, 94, 71, 0.3);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ================= CARD / VIEWER STAGE ================= */
+    #card-view {
+      display: none;
+      width: 100%;
+      min-height: calc(100dvh - 56px);
+      padding:
+        10px
+        max(12px, env(safe-area-inset-right))
+        max(16px, env(safe-area-inset-bottom))
+        max(12px, env(safe-area-inset-left));
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: clip;
+    }
+
+    #card-view.active { display: flex; }
+
+    /* ================= PART 2: ENVELOPE STAGE ================= */
+    #envelope-stage {
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 0;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      perspective: 1600px;
+    }
+
+    .envelope-shell {
+      position: relative;
+      background: linear-gradient(160deg, #efe2cd 0%, #e1ceb0 55%, #d6bf9c 100%);
+      border-radius: 14px;
+      padding: 28px 26px 30px;
+      box-shadow:
+        0 24px 55px rgba(47, 32, 21, 0.28),
+        inset 0 0 0 2px rgba(255, 253, 248, 0.45),
+        inset 0 0 40px rgba(123, 94, 71, 0.18);
+      border: 1px solid rgba(123, 94, 71, 0.35);
+      overflow: hidden;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease;
+    }
+
+    .envelope-airmail-border {
+      position: absolute;
+      inset: 8px;
+      border-radius: 10px;
+      border: 2px dashed rgba(169, 63, 53, 0.25);
+      pointer-events: none;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 118px;
+      background: linear-gradient(180deg, #e5d2b5, #d5be9b);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 5;
+      box-shadow: 0 8px 18px rgba(47, 32, 21, 0.18);
+      pointer-events: none;
+    }
+
+    .envelope-wrapper.opening .envelope-flap {
+      transform: rotateX(175deg);
+    }
+
+    .envelope-wrapper.opening .envelope-shell {
+      transform: translateY(24px) scale(0.96);
+      opacity: 0;
+    }
+
+    .envelope-card-content {
+      position: relative;
+      z-index: 6;
+      background: var(--paper-cream);
+      border-radius: 10px;
+      padding: 24px 22px 26px;
+      margin-top: 26px;
+      box-shadow: 0 10px 26px rgba(47, 32, 21, 0.18), inset 0 0 30px rgba(139, 107, 82, 0.08);
+      border: 1px solid rgba(123, 94, 71, 0.22);
+      text-align: center;
+      transition: transform 0.65s ease;
+    }
+
+    .envelope-wrapper.opening .envelope-card-content {
+      transform: translateY(-48px);
+    }
+
+    .cover-postmark-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .vintage-stamp {
+      width: 68px;
+      height: 78px;
+      background: var(--pink-pastel);
+      border: 3px dotted var(--paper-ivory);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.14);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 0.65rem;
+      color: var(--brown-deep);
+      transform: rotate(5deg);
+      padding: 4px;
+    }
+
+    .postmark-circle {
+      width: 72px;
+      height: 72px;
+      border: 2px double rgba(123, 94, 71, 0.45);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--brown-soft);
+      transform: rotate(-10deg);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .cover-happy {
+      font-family: var(--font-hand);
+      font-size: clamp(1.7rem, 4vw, 2.35rem);
+      color: var(--wax-red);
+      margin: 4px 0 0;
+      line-height: 1.2;
+    }
+
+    .cover-recipient {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--brown-deep);
+      margin: 4px 0;
+      letter-spacing: 0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 0.92rem;
+      color: var(--brown-soft);
+      font-style: italic;
+      margin: 0 0 14px;
+    }
+
+    .cover-polaroid {
+      display: inline-block;
+      background: var(--paper-ivory);
+      padding: 10px 10px 26px;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(47, 32, 21, 0.22);
+      transform: rotate(-1.8deg);
+      position: relative;
+      max-width: 340px;
+      width: 100%;
+      margin: 6px auto 14px;
+    }
+
+    .cover-polaroid img {
+      width: 100%;
+      height: clamp(135px, 24dvh, 215px);
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      background: #e6dac6;
+    }
+
+    @media (max-width: 600px) {
+      .envelope-shell { padding: 16px 14px 18px; }
+      .envelope-flap { height: 84px; }
+      .envelope-card-content { padding: 16px 14px 18px; margin-top: 16px; }
+      .vintage-stamp { width: 54px; height: 62px; font-size: 0.56rem; }
+      .postmark-circle { width: 56px; height: 56px; font-size: 0.54rem; }
+      .cover-subtitle { margin-bottom: 8px; font-size: 0.84rem; }
+      .cover-polaroid { padding: 7px 7px 18px; margin: 4px auto 10px; max-width: 270px; }
+      .cover-from { font-size: 1rem; margin: 2px 0 12px; }
+      .open-card-btn { padding: 11px 24px; font-size: 0.98rem; }
+    }
+
+    .cover-polaroid-caption {
+      font-family: var(--font-hand);
+      font-size: 0.95rem;
+      color: var(--brown-ink);
+      margin-top: 8px;
+    }
+
+    .cover-from {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--brown-ink);
+      margin: 4px 0 18px;
+    }
+
+    .open-card-btn {
+      position: relative;
+      background: linear-gradient(135deg, #b84a3d, #8d3026);
+      color: #fffdf8;
+      border: 2px solid #e7c888;
+      padding: 13px 32px;
+      border-radius: 999px;
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(141, 48, 38, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .open-card-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 30px rgba(141, 48, 38, 0.45);
+    }
+
+    /* ================= PART 3: FLIPBOOK ENGINE ================= */
+    #flipbook-stage {
+      display: none;
+      width: 100%;
+      max-width: 1120px;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #flipbook-stage.active {
+      display: flex;
+      animation: fadeUp 0.55s ease both;
+    }
+
+    .book-viewport {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 2400px;
+      padding: 4px 0;
+    }
+
+    .book-scale-slot {
+      position: relative;
+      margin: 0 auto;
+      flex-shrink: 0;
+    }
+
+    /* Two-page spread book (Desktop: fixed crisp 980x620 base canvas, auto-scaled to screen) */
+    .book-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 980px;
+      height: 620px;
+      transform-origin: top left;
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease;
+    }
+
+    .book-base-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: var(--paper-cream);
+      border-radius: 12px 0 0 12px;
+      box-shadow: -8px 16px 36px rgba(47, 32, 21, 0.24), inset -18px 0 28px rgba(92, 67, 50, 0.12);
+      border: 1px solid rgba(123, 94, 71, 0.28);
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .book-base-right-back {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: #e4d5be;
+      border-radius: 0 12px 12px 0;
+      box-shadow: 8px 16px 36px rgba(47, 32, 21, 0.22);
+      border: 1px solid rgba(123, 94, 71, 0.28);
+      z-index: 0;
+    }
+
+    .book-spine {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 18px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, rgba(47,32,21,0.16), rgba(255,255,255,0.22) 50%, rgba(47,32,21,0.18));
+      z-index: 500;
+      pointer-events: none;
+    }
+
+    .sheet {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 0.82s cubic-bezier(0.645, 0.045, 0.355, 1);
+      cursor: pointer;
+    }
+
+    .sheet.flipped {
+      transform: rotateY(-180deg);
+    }
+
+    .sheet.flipping {
+      z-index: 420 !important;
+    }
+
+    .sheet-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--paper-cream);
+      overflow: hidden;
+      border: 1px solid rgba(123, 94, 71, 0.24);
+    }
+
+    .sheet-front {
+      border-radius: 0 12px 12px 0;
+      box-shadow: 6px 12px 28px rgba(47, 32, 21, 0.16), inset 18px 0 26px rgba(92, 67, 50, 0.1);
+    }
+
+    .sheet-back {
+      transform: rotateY(180deg);
+      border-radius: 12px 0 0 12px;
+      box-shadow: -6px 12px 28px rgba(47, 32, 21, 0.16), inset -18px 0 26px rgba(92, 67, 50, 0.1);
+    }
+
+    /* Single-page mode (Mobile / Tablet: 430x585 base canvas, auto-scaled cleanly to any iPhone/Android viewport) */
+    .book-container.single-mode {
+      width: 430px;
+      height: 585px;
+    }
+
+    .book-container.single-mode .book-base-left,
+    .book-container.single-mode .book-spine,
+    .book-container.single-mode .book-base-right-back {
+      display: none;
+    }
+
+    .book-container.single-mode .sheet {
+      width: 100%;
+      left: 0;
+      right: auto;
+    }
+
+    .book-container.single-mode .sheet-front {
+      border-radius: 12px;
+      box-shadow: 0 14px 36px rgba(47, 32, 21, 0.24), inset 14px 0 22px rgba(92, 67, 50, 0.09);
+    }
+
+    .book-container.single-mode .sheet.flipped {
+      transform: rotateY(-115deg) translateX(-12%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Flipbook Controls */
+    .book-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(251, 245, 233, 0.94);
+      padding: 8px 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(123, 94, 71, 0.25);
+      box-shadow: 0 6px 18px rgba(47, 32, 21, 0.1);
+      max-width: 100%;
+    }
+
+    @media (max-width: 700px) {
+      #layout-mode-btn { display: none; }
+      .book-controls {
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 16px;
+      }
+      .book-controls .btn-sm {
+        padding: 6px 9px;
+        font-size: 0.76rem;
+        min-height: 34px;
+      }
+      .page-indicator {
+        font-size: 0.82rem;
+        min-width: 82px;
+      }
+    }
+
+    .page-indicator {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--brown-deep);
+      min-width: 110px;
+      text-align: center;
+    }
+
+    /* ================= SCRAPBOOK PAGE TEXTURES & DECORATIONS ================= */
+    .scrap-page {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 24px 22px 26px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background-color: var(--paper-cream);
+      box-shadow: inset 0 0 42px rgba(139, 107, 82, 0.13);
+    }
+
+    .bg-lined {
+      background-image: repeating-linear-gradient(transparent, transparent 27px, rgba(123, 94, 71, 0.13) 28px);
+    }
+
+    .bg-dotted {
+      background-image: radial-gradient(rgba(123, 94, 71, 0.22) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(123, 94, 71, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123, 94, 71, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .bg-kraft {
+      background-color: #f3e8d4;
+      background-image: radial-gradient(circle at 85% 15%, rgba(255,255,255,0.45), transparent 45%);
+    }
+
+    .page-number-tag {
+      position: absolute;
+      bottom: 8px;
+      right: 14px;
+      font-family: var(--font-serif);
+      font-size: 0.74rem;
+      color: rgba(123, 94, 71, 0.7);
+      font-style: italic;
+    }
+
+    /* Washi Tapes */
+    .washi-tape {
+      position: absolute;
+      width: 82px;
+      height: 22px;
+      z-index: 15;
+      opacity: 0.88;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      pointer-events: none;
+      clip-path: polygon(0 4%, 4% 0, 96% 2%, 100% 10%, 97% 50%, 100% 92%, 95% 100%, 4% 98%, 0 90%, 3% 50%);
+    }
+
+    .tape-pink-dots {
+      background-color: #f3c4cc;
+      background-image: radial-gradient(rgba(255,255,255,0.7) 2px, transparent 2px);
+      background-size: 10px 10px;
+    }
+
+    .tape-sage-stripe {
+      background: repeating-linear-gradient(45deg, #c6d5b8, #c6d5b8 6px, #e3ecd8 6px, #e3ecd8 12px);
+    }
+
+    .tape-gold-kraft {
+      background: repeating-linear-gradient(-45deg, #dec18d, #dec18d 5px, #ecd8b1 5px, #ecd8b1 10px);
+    }
+
+    .tape-gingham {
+      background-color: #f7dde2;
+      background-image:
+        linear-gradient(90deg, rgba(214, 139, 150, 0.35) 50%, transparent 50%),
+        linear-gradient(rgba(214, 139, 150, 0.35) 50%, transparent 50%);
+      background-size: 10px 10px;
+    }
+
+    .tape-mint {
+      background: linear-gradient(90deg, #cbe0d8, #dcece6);
+    }
+
+    .tape-vintage-text {
+      background: #e5d2b5;
+      border-top: 1px dashed rgba(92,67,50,0.3);
+      border-bottom: 1px dashed rgba(92,67,50,0.3);
+    }
+
+    /* Stickers */
+    .sticker {
+      position: absolute;
+      z-index: 18;
+      pointer-events: none;
+      filter: drop-shadow(0 3px 4px rgba(47, 32, 21, 0.2));
+    }
+
+    /* Polaroid Component */
+    .polaroid-frame {
+      position: relative;
+      background: var(--paper-ivory);
+      padding: 8px 8px 6px;
+      border-radius: 3px;
+      box-shadow: 0 8px 20px rgba(47, 32, 21, 0.22), 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid rgba(123, 94, 71, 0.14);
+      z-index: 5;
+      cursor: zoom-in;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .polaroid-frame:hover,
+    .polaroid-extra:hover,
+    .cover-polaroid:hover {
+      box-shadow: 0 12px 26px rgba(47, 32, 21, 0.28);
+    }
+
+    .cover-polaroid { cursor: zoom-in; }
+
+    .polaroid-img-wrap {
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      background: #ebe1d0;
+      position: relative;
+    }
+
+    .polaroid-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #ebe1d0;
+    }
+
+    .polaroid-extra {
+      position: absolute;
+      background: var(--paper-ivory);
+      padding: 5px 5px 12px;
+      border-radius: 3px;
+      box-shadow: 0 7px 18px rgba(47, 32, 21, 0.22), 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid rgba(123, 94, 71, 0.14);
+      z-index: 8;
+      cursor: zoom-in;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .polaroid-extra .polaroid-img-wrap {
+      width: 100%;
+      height: 100%;
+    }
+
+    .zoom-hint-badge {
+      position: absolute;
+      right: 6px;
+      bottom: 4px;
+      font-size: 0.68rem;
+      opacity: 0.58;
+      pointer-events: none;
+    }
+
+    .modal-photo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .modal-photo-chip {
+      position: relative;
+      width: 80px;
+      height: 86px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2.5px solid #fff;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.14);
+      cursor: pointer;
+      background: #ebe1d0;
+    }
+
+    .modal-photo-chip.active-framer {
+      border-color: var(--wax-red);
+      box-shadow: 0 0 0 3px rgba(169, 63, 53, 0.22);
+    }
+
+    .modal-photo-chip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-photo-badge {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      background: rgba(47, 32, 21, 0.78);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .modal-photo-remove {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(169, 63, 53, 0.92);
+      color: #fff;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-photo-order {
+      position: absolute;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .modal-photo-order button {
+      pointer-events: auto;
+      border: none;
+      background: rgba(255, 253, 248, 0.9);
+      color: var(--brown-deep);
+      width: 20px;
+      height: 18px;
+      border-radius: 4px;
+      font-size: 11px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    }
+
+    /* Interactive Photo Framer */
+    .framer-panel {
+      margin-top: 10px;
+      background: #fffaf1;
+      border: 1px dashed rgba(123, 94, 71, 0.4);
+      border-radius: 12px;
+      padding: 12px;
+      display: none;
+    }
+
+    .framer-panel.open { display: block; }
+
+    .framer-layout {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    @media (max-width: 560px) {
+      .framer-layout { grid-template-columns: 1fr; }
+    }
+
+    .framer-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .framer-viewport {
+      width: 144px;
+      height: 162px;
+      background: #ebe1d0;
+      border: 6px solid #fff;
+      box-shadow: 0 5px 15px rgba(47, 32, 21, 0.2);
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      position: relative;
+    }
+
+    .framer-viewport.is-avatar {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+    }
+
+    .framer-viewport:active { cursor: grabbing; }
+
+    .framer-viewport img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+
+    .framer-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+
+    .framer-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .framer-row label {
+      min-width: 72px;
+      margin: 0;
+      font-size: 0.74rem;
+      color: var(--brown-soft);
+      font-weight: 700;
+    }
+
+    .framer-row input[type="range"] {
+      flex: 1;
+      accent-color: var(--brown-ink);
+    }
+
+    .polaroid-cap {
+      font-family: var(--font-hand);
+      font-size: 0.76rem;
+      line-height: 18px;
+      height: 18px;
+      color: var(--brown-soft);
+      text-align: center;
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 0;
+    }
+
+    /* Sticky Note Component */
+    .sticky-note {
+      position: relative;
+      padding: 14px 16px 12px;
+      border-radius: 3px 3px 12px 3px;
+      box-shadow: 0 7px 18px rgba(47, 32, 21, 0.16), inset 0 0 24px rgba(139, 107, 82, 0.07);
+      background-image: repeating-linear-gradient(transparent, transparent 22px, rgba(92, 67, 50, 0.1) 23px);
+      background-position: 0 10px;
+      z-index: 6;
+      border: 1px solid rgba(92, 67, 50, 0.1);
+    }
+
+    .sticky-note::after {
+      content: "";
+      position: absolute;
+      right: 4px;
+      bottom: 6px;
+      width: 34px;
+      height: 12px;
+      box-shadow: 0 6px 10px rgba(47, 32, 21, 0.25);
+      transform: rotate(-6deg);
+      z-index: -1;
+    }
+
+    .wish-heading {
+      font-family: var(--font-hand);
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--wax-red);
+      margin: 0 0 6px;
+    }
+
+    .wish-body {
+      font-family: var(--font-hand);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: var(--brown-deep);
+      margin: 0;
+    }
+
+    /* Line-by-line reveal animation */
+    .wish-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(7px);
+      transition: opacity 0.52s ease, transform 0.52s ease;
+    }
+
+    .page-active .wish-line,
+    .print-sheet .wish-line {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .regards-block {
+      margin-top: 8px;
+      font-family: var(--font-hand);
+      font-size: 0.85rem;
+      color: var(--brown-ink);
+    }
+
+    .regards-name {
+      font-weight: 700;
+      font-size: 0.96rem;
+      color: var(--brown-deep);
+    }
+
+    /* Signature Area */
+    .sig-area {
+      position: relative;
+      z-index: 7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      background: rgba(255, 253, 248, 0.7);
+      border: 1px dashed rgba(123, 94, 71, 0.35);
+      border-radius: 8px;
+    }
+
+    .sig-area img {
+      max-height: 54px;
+      max-width: 145px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .sig-area.is-avatar {
+      padding: 8px 10px 6px;
+      cursor: zoom-in;
+    }
+
+    .sig-avatar-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2.5px solid #fff;
+      box-shadow: 0 3px 10px rgba(47, 32, 21, 0.18);
+      background: #ebe1d0;
+      margin-bottom: 4px;
+    }
+
+    .sig-area .sig-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      max-width: none;
+      mix-blend-mode: normal;
+      display: block;
+    }
+
+    .sig-wall-avatar-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 7px rgba(47, 32, 21, 0.16);
+      background: #ebe1d0;
+    }
+
+    .sig-wall-card .sig-wall-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      max-width: none;
+      mix-blend-mode: normal;
+      display: block;
+    }
+
+    .sig-area-label {
+      font-family: var(--font-serif);
+      font-size: 0.72rem;
+      color: var(--brown-soft);
+      border-top: 1px solid rgba(123, 94, 71, 0.3);
+      padding-top: 2px;
+      margin-top: 2px;
+      min-width: 90px;
+      text-align: center;
+    }
+
+    /* ================= 8 NON-REPEATING MEMBER PAGE LAYOUTS ================= */
+    .member-canvas {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Layout 0: Top-left tilted polaroid, bottom-right note, bottom-left sig */
+    .layout-0 .polaroid-frame {
+      position: absolute; top: 14px; left: 10px; width: 48%; height: 225px; transform: rotate(-4deg);
+    }
+    .layout-0 .sticky-note {
+      position: absolute; top: 120px; right: 6px; width: 56%; transform: rotate(2.2deg);
+    }
+    .layout-0 .sig-area {
+      position: absolute; bottom: 18px; left: 14px; width: 40%; transform: rotate(-1.5deg);
+    }
+
+    /* Layout 1: Left tall polaroid, right note & sig stacked */
+    .layout-1 .polaroid-frame {
+      position: absolute; top: 26px; left: 8px; width: 44%; height: 270px; transform: rotate(2.5deg);
+    }
+    .layout-1 .sticky-note {
+      position: absolute; top: 20px; right: 8px; width: 50%; transform: rotate(-1.6deg);
+    }
+    .layout-1 .sig-area {
+      position: absolute; bottom: 24px; right: 18px; width: 46%; transform: rotate(2deg);
+    }
+
+    /* Layout 2: Top-left note, right polaroid, bottom-left sig */
+    .layout-2 .sticky-note {
+      position: absolute; top: 16px; left: 8px; width: 54%; transform: rotate(1.8deg);
+    }
+    .layout-2 .polaroid-frame {
+      position: absolute; top: 96px; right: 8px; width: 46%; height: 230px; transform: rotate(-3.5deg);
+    }
+    .layout-2 .sig-area {
+      position: absolute; bottom: 20px; left: 18px; width: 44%; transform: rotate(-2deg);
+    }
+
+    /* Layout 3: Top-right polaroid, overlapping bottom-left note, bottom-right sig */
+    .layout-3 .polaroid-frame {
+      position: absolute; top: 14px; right: 12px; width: 50%; height: 220px; transform: rotate(3.2deg);
+    }
+    .layout-3 .sticky-note {
+      position: absolute; top: 148px; left: 8px; width: 58%; transform: rotate(-2.4deg);
+    }
+    .layout-3 .sig-area {
+      position: absolute; bottom: 18px; right: 14px; width: 38%; transform: rotate(1.5deg);
+    }
+
+    /* Layout 4: Wide top note, bottom-left polaroid, bottom-right sig */
+    .layout-4 .sticky-note {
+      position: absolute; top: 12px; left: 12px; right: 12px; transform: rotate(-1deg);
+    }
+    .layout-4 .polaroid-frame {
+      position: absolute; bottom: 16px; left: 14px; width: 46%; height: 210px; transform: rotate(3.8deg);
+    }
+    .layout-4 .sig-area {
+      position: absolute; bottom: 32px; right: 16px; width: 44%; transform: rotate(-2.5deg);
+    }
+
+    /* Layout 5: Postcard horizontal split (photo top-center-left, note bottom, sig top-right) */
+    .layout-5 .polaroid-frame {
+      position: absolute; top: 18px; left: 14px; width: 46%; height: 205px; transform: rotate(-2deg);
+    }
+    .layout-5 .sticky-note {
+      position: absolute; bottom: 20px; left: 12px; right: 12px; transform: rotate(1.3deg);
+    }
+    .layout-5 .sig-area {
+      position: absolute; top: 22px; right: 14px; width: 42%; transform: rotate(3.4deg);
+    }
+
+    /* Layout 6: Centerpiece polaroid + banner note below + tag sig */
+    .layout-6 .polaroid-frame {
+      position: absolute; top: 10px; left: 22%; width: 54%; height: 215px; transform: rotate(1.6deg);
+    }
+    .layout-6 .sticky-note {
+      position: absolute; top: 238px; left: 10px; width: 62%; transform: rotate(-1.5deg);
+    }
+    .layout-6 .sig-area {
+      position: absolute; bottom: 22px; right: 10px; width: 34%; transform: rotate(3deg);
+    }
+
+    /* Layout 7: Top-right note, bottom-left polaroid, top-left sig badge */
+    .layout-7 .sig-area {
+      position: absolute; top: 28px; left: 10px; width: 38%; transform: rotate(-4deg);
+    }
+    .layout-7 .sticky-note {
+      position: absolute; top: 16px; right: 10px; width: 54%; transform: rotate(2.2deg);
+    }
+    .layout-7 .polaroid-frame {
+      position: absolute; bottom: 16px; left: 16px; width: 52%; height: 218px; transform: rotate(-2.6deg);
+    }
+
+    /* Extra Polaroid positions (2nd & 3rd photo per member across all 8 layouts) */
+    .layout-0 .polaroid-extra-1 { top: 10px; right: 14px; width: 33%; height: 104px; transform: rotate(5.5deg); }
+    .layout-0 .polaroid-extra-2 { bottom: 16px; right: 14px; width: 31%; height: 100px; transform: rotate(-5deg); }
+
+    .layout-1 .polaroid-extra-1 { bottom: 18px; left: 14px; width: 38%; height: 124px; transform: rotate(-4.5deg); }
+    .layout-1 .polaroid-extra-2 { bottom: 152px; left: 10px; width: 31%; height: 96px; transform: rotate(5deg); }
+
+    .layout-2 .polaroid-extra-1 { bottom: 16px; right: 14px; width: 37%; height: 122px; transform: rotate(4.5deg); }
+    .layout-2 .polaroid-extra-2 { top: 8px; right: 18px; width: 31%; height: 84px; transform: rotate(-5.5deg); }
+
+    .layout-3 .polaroid-extra-1 { top: 12px; left: 10px; width: 35%; height: 118px; transform: rotate(-5deg); }
+    .layout-3 .polaroid-extra-2 { bottom: 14px; left: 14px; width: 32%; height: 98px; transform: rotate(4deg); }
+
+    .layout-4 .polaroid-extra-1 { bottom: 126px; right: 16px; width: 37%; height: 116px; transform: rotate(5deg); }
+    .layout-4 .polaroid-extra-2 { bottom: 140px; left: 48%; width: 26%; height: 86px; transform: rotate(-4deg); }
+
+    .layout-5 .polaroid-extra-1 { top: 122px; right: 16px; width: 37%; height: 114px; transform: rotate(-4deg); }
+    .layout-5 .polaroid-extra-2 { top: 222px; left: 16px; width: 32%; height: 92px; transform: rotate(4.5deg); }
+
+    .layout-6 .polaroid-extra-1 { top: 228px; right: 10px; width: 31%; height: 116px; transform: rotate(5deg); }
+    .layout-6 .polaroid-extra-2 { top: 18px; left: 6px; width: 22%; height: 94px; transform: rotate(-7deg); }
+
+    .layout-7 .polaroid-extra-1 { bottom: 18px; right: 14px; width: 37%; height: 122px; transform: rotate(4.5deg); }
+    .layout-7 .polaroid-extra-2 { top: 126px; left: 12px; width: 32%; height: 96px; transform: rotate(-5deg); }
+
+    @media (max-width: 520px) {
+      .member-canvas .polaroid-frame { height: 185px !important; }
+      .wish-body { font-size: 0.78rem; }
+      .scrap-page { padding: 16px 14px 20px; }
+    }
+
+    /* ================= PART 3: OPENING LETTER PAGE ================= */
+    .opening-page {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 34px 28px;
+    }
+
+    .opening-inner {
+      background: rgba(255, 253, 248, 0.85);
+      border: 1px solid rgba(123, 94, 71, 0.22);
+      border-radius: 10px;
+      padding: 30px 24px;
+      width: 100%;
+      box-shadow: 0 8px 24px rgba(47, 32, 21, 0.08);
+      position: relative;
+    }
+
+    .handwriting-dear {
+      font-family: var(--font-hand);
+      font-size: 1.9rem;
+      color: var(--wax-red);
+      margin: 0 0 18px;
+    }
+
+    .handwriting-intro {
+      font-family: var(--font-hand);
+      font-size: 1.24rem;
+      line-height: 1.7;
+      color: var(--brown-deep);
+      min-height: 85px;
+      margin: 0 0 20px;
+    }
+
+    .hw-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+
+    .hw-word.revealed,
+    .print-sheet .hw-word {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= PART 5: TEAM GALLERY COLLAGE ================= */
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .gallery-header h3 {
+      font-family: var(--font-hand);
+      font-size: 1.45rem;
+      color: var(--brown-deep);
+      margin: 0;
+    }
+
+    .gallery-header p {
+      font-size: 0.8rem;
+      color: var(--brown-soft);
+      margin: 2px 0 0;
+    }
+
+    .collage-wall {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 8px 4px;
+      align-content: center;
+    }
+
+    .collage-polaroid {
+      background: var(--paper-ivory);
+      padding: 6px 6px 16px;
+      box-shadow: 0 6px 16px rgba(47, 32, 21, 0.22);
+      border: 1px solid rgba(123, 94, 71, 0.14);
+      position: relative;
+      cursor: zoom-in;
+      transition: transform 0.22s ease, z-index 0s;
+    }
+
+    .collage-polaroid:hover {
+      transform: scale(1.1) rotate(0deg) !important;
+      z-index: 30;
+    }
+
+    .collage-polaroid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pin-dot {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #e57d73, #a93f35);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* ================= PART 6: WALL OF SIGNATURES ================= */
+    .sig-wall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      align-content: start;
+      flex: 1;
+      padding: 6px 2px;
+      overflow-y: auto;
+    }
+
+    .sig-wall-card {
+      background: rgba(255, 253, 248, 0.85);
+      border: 1px solid rgba(123, 94, 71, 0.2);
+      border-radius: 8px;
+      padding: 8px 8px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 8px rgba(47, 32, 21, 0.08);
+    }
+
+    .sig-wall-card img {
+      height: 52px;
+      max-width: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .sig-wall-name {
+      margin-top: 5px;
+      padding-top: 4px;
+      border-top: 1px dashed rgba(123, 94, 71, 0.3);
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-hand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--brown-deep);
+    }
+
+    /* ================= PART 7: ENDING PAGE ================= */
+    .ending-page {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(circle at center, #fffdf8 0%, #f8ebd8 100%);
+    }
+
+    .ending-title {
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      color: var(--brown-deep);
+      margin: 8px 0 10px;
+      line-height: 1.25;
+    }
+
+    .ending-msg {
+      font-family: var(--font-hand);
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: var(--brown-ink);
+      max-width: 92%;
+      margin: 0 auto 14px;
+    }
+
+    .ending-hb {
+      font-family: var(--font-hand);
+      font-size: 1.85rem;
+      color: var(--wax-red);
+      margin: 4px 0 14px;
+      font-weight: 700;
+    }
+
+    .ending-names-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      max-width: 95%;
+      margin: 0 auto;
+    }
+
+    .ending-name-pill {
+      background: var(--pink-pastel);
+      border: 1px solid rgba(123, 94, 71, 0.25);
+      color: var(--brown-deep);
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-family: var(--font-hand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 2px 5px rgba(47, 32, 21, 0.08);
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1500;
+    }
+
+    /* Lightbox for Gallery Zoom */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(25, 16, 10, 0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1600;
+      padding:
+        max(16px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(16px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
+      cursor: zoom-out;
+    }
+
+    #lightbox.open { display: flex; }
+
+    #lightbox-card {
+      background: var(--paper-ivory);
+      padding: 14px 14px 30px;
+      border-radius: 6px;
+      max-width: min(560px, 92vw);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    #lightbox-card img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #lightbox-caption {
+      font-family: var(--font-hand);
+      font-size: 1.15rem;
+      color: var(--brown-deep);
+      margin-top: 10px;
+    }
+
+    /* ================= PRINT / PDF EXPORT ================= */
+    #print-container { display: none; }
+
+    @media print {
+      @page {
+        size: A5 portrait;
+        margin: 8mm;
+      }
+
+      body {
+        background: #fff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .app-toolbar,
+      #editor-view,
+      #card-view,
+      #confetti-canvas,
+      #lightbox,
+      .modal-backdrop,
+      .toast {
+        display: none !important;
+      }
+
+      #print-container {
+        display: block !important;
+      }
+
+      .print-sheet {
+        width: 100%;
+        height: 192mm;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid rgba(123, 94, 71, 0.25);
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      .print-sheet:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- TOP TOOLBAR -->
+  <header class="app-toolbar">
+    <div class="brand-title">
+      <span>📒 Scrapbook Studio</span>
+      <span class="brand-badge" id="toolbar-recipient-badge">Armand Dore</span>
+    </div>
+
+    <div class="toolbar-group">
+      <button class="btn editor-only active-tab" id="tab-editor-btn" onclick="switchMode('editor')">✏️ Chỉnh sửa</button>
+      <button class="btn editor-only" id="tab-card-btn" onclick="switchMode('card')">📖 Xem thiệp</button>
+      <button class="btn" id="music-toggle-btn" style="display:none;" onclick="toggleBgMusic()">🎵 Nhạc: Chờ mở</button>
+      <button class="btn" id="sound-toggle-btn" onclick="toggleSound()">🔊 Âm thanh: Bật</button>
+      <button class="btn btn-rose" onclick="exportPDF()">📄 Export PDF</button>
+      <button class="btn btn-gold editor-only" onclick="exportHTMLCard()">💌 Export HTML Card</button>
+    </div>
+  </header>
+
+  <!-- ================= PART 1: EDITOR ================= -->
+  <main id="editor-view" class="editor-only">
+    <!-- Left Column: General Info & Team Gallery -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">🎀 Thông tin chung</h2>
+        <button class="btn btn-sm" onclick="resetToSampleData()" title="Khôi phục dữ liệu mẫu">↺ Mẫu</button>
+      </div>
+
+      <div class="form-field">
+        <label for="inp-recipient">Tên người nhận</label>
+        <input id="inp-recipient" class="form-control" type="text" placeholder="VD: Armand Dore" oninput="updateGeneral('recipientName', this.value)" />
+      </div>
+
+      <div class="two-col">
+        <div class="form-field">
+          <label for="inp-title">Chức danh</label>
+          <input id="inp-title" class="form-control" type="text" placeholder="VD: HSE Director" oninput="updateGeneral('recipientTitle', this.value)" />
+        </div>
+        <div class="form-field">
+          <label for="inp-date">Ngày sinh nhật</label>
+          <input id="inp-date" class="form-control" type="text" placeholder="VD: 26/11/2026" oninput="updateGeneral('birthdayDate', this.value)" />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="inp-team">Tên tập thể / Người gửi</label>
+        <input id="inp-team" class="form-control" type="text" placeholder="VD: SHE Team" oninput="updateGeneral('senderTeam', this.value)" />
+      </div>
+
+      <div class="form-field">
+        <label for="inp-intro">Lời chúc chung của tập thể (Trang đầu)</label>
+        <textarea id="inp-intro" class="form-control" oninput="updateGeneral('introWish', this.value)"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label for="inp-closing">Lời tri ân trang kết</label>
+        <textarea id="inp-closing" class="form-control" oninput="updateGeneral('closingWish', this.value)"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Ảnh bìa (Kéo thả hoặc bấm để chọn)</label>
+        <div class="dropzone" id="cover-dropzone">
+          <input type="file" id="cover-file-input" accept="image/*" />
+          <div>🖼️ Kéo thả ảnh bìa vào đây hoặc <strong>chọn ảnh</strong></div>
+          <p class="dropzone-hint">Hỗ trợ JPG, PNG, WebP (tự nén nhẹ để xuất HTML)</p>
+        </div>
+        <div class="preview-box" id="cover-preview-wrap"></div>
+      </div>
+
+      <div class="form-field">
+        <label>Ảnh tập thể cho Gallery Team</label>
+        <div class="dropzone" id="gallery-dropzone">
+          <input type="file" id="gallery-file-input" accept="image/*" multiple />
+          <div>📸 Kéo thả nhiều ảnh tập thể vào đây</div>
+          <p class="dropzone-hint">Tự động ghép thành Polaroid Collage cùng ảnh thành viên</p>
+        </div>
+        <div style="margin-top:8px; display:flex; align-items:center; gap:6px; font-size:0.83rem;">
+          <input type="checkbox" id="inp-include-member-photos" onchange="updateGeneral('includeMemberPhotosInGallery', this.checked)" />
+          <label for="inp-include-member-photos" style="margin:0; text-transform:none; font-weight:600; cursor:pointer;">Gộp cả ảnh thành viên vào Gallery Team</label>
+        </div>
+        <div class="editor-gallery-grid" id="editor-gallery-grid"></div>
+      </div>
+
+      <div class="form-field">
+        <label>🎵 Nhạc nền thiệp (MP3 — tự phát khi mở / lật thiệp)</label>
+        <div class="dropzone" id="music-dropzone">
+          <input type="file" id="music-file-input" accept=".mp3,audio/mpeg,audio/*" />
+          <div>🎶 Kéo thả file <strong>MP3</strong> vào đây hoặc <strong>chọn nhạc</strong></div>
+          <p class="dropzone-hint">Nhúng trực tiếp vào thiệp HTML để phát offline</p>
+        </div>
+        <div id="music-preview-wrap" style="margin-top:8px;"></div>
+      </div>
+    </section>
+
+    <!-- Right Column: Members Management -->
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">👥 Thành viên & Lời chúc (<span id="member-count">0</span>)</h2>
+          <small style="color:var(--brown-soft);">Kéo thả biểu tượng ⋮⋮ để đổi thứ tự trang trong Flipbook</small>
+        </div>
+        <button class="btn btn-primary" onclick="openMemberModal()">+ Thêm thành viên</button>
+      </div>
+
+      <div class="members-list" id="members-list"></div>
+    </section>
+  </main>
+
+  <!-- ================= CARD / FLIPBOOK VIEW ================= -->
+  <section id="card-view">
+    <!-- PART 2: ENVELOPE COVER -->
+    <div id="envelope-stage">
+      <div class="envelope-wrapper" id="envelope-wrapper">
+        <div class="envelope-shell">
+          <div class="envelope-airmail-border"></div>
+          <div class="envelope-flap"></div>
+
+          <div class="envelope-card-content">
+            <div class="cover-postmark-row">
+              <div class="postmark-circle">
+                <span>SPECIAL</span>
+                <span id="cover-date-badge">26/11</span>
+                <span>MEMORY</span>
+              </div>
+              <div class="vintage-stamp">
+                <span style="font-size:1.3rem;">🎂</span>
+                <strong>AIR MAIL</strong>
+                <span>HANDMADE</span>
+              </div>
+            </div>
+
+            <div class="cover-happy">Happy Birthday</div>
+            <h1 class="cover-recipient" id="cover-recipient-name">Armand Dore</h1>
+            <p class="cover-subtitle" id="cover-recipient-title">HSE Director</p>
+
+            <div class="cover-polaroid" onclick="openLightboxFromEl(this)" id="cover-polaroid-box">
+              <img id="cover-photo-img" alt="Cover photo" />
+              <div class="cover-polaroid-caption" id="cover-polaroid-caption">Memories with SHE Team</div>
+              <span class="zoom-hint-badge">🔍</span>
+            </div>
+
+            <div class="cover-from" id="cover-from-team">From SHE Team</div>
+
+            <button class="open-card-btn" onclick="openScrapbookEnvelope()">
+              <span>✉️</span>
+              <span>Open Card</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 3 - 7: FLIPBOOK -->
+    <div id="flipbook-stage">
+      <div class="book-viewport">
+        <div class="book-scale-slot" id="book-scale-slot">
+          <div class="book-container" id="book-container"></div>
+        </div>
+      </div>
+
+      <div class="book-controls">
+        <button class="btn btn-sm" onclick="backToCover()">✉️ Bìa thiệp</button>
+        <button class="btn btn-sm" id="prev-page-btn" onclick="prevPage()">◀ Trang trước</button>
+        <span class="page-indicator" id="page-indicator">Trang 1 / 1</span>
+        <button class="btn btn-sm btn-primary" id="next-page-btn" onclick="nextPage()">Trang sau ▶</button>
+        <button class="btn btn-sm" id="layout-mode-btn" onclick="toggleSingleSpread()" title="Đổi chế độ 1 trang / 2 trang">📖 2 Trang</button>
+        <button class="btn btn-sm btn-rose" onclick="triggerConfetti()" title="Bắn pháo giấy">🎉 Confetti</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBER ADD/EDIT MODAL -->
+  <div class="modal-backdrop" id="member-modal">
+    <div class="modal-card">
+      <div class="panel-header">
+        <h3 class="panel-title" id="modal-title">Thêm thành viên</h3>
+        <button class="btn btn-sm" onclick="closeMemberModal()">✕ Đóng</button>
+      </div>
+
+      <input type="hidden" id="m-edit-id" />
+
+      <div class="form-field">
+        <label for="m-name">Họ tên thành viên *</label>
+        <input id="m-name" class="form-control" type="text" placeholder="VD: Trinh Son" />
+      </div>
+
+      <div class="form-field">
+        <label for="m-wish">Lời chúc *</label>
+        <textarea id="m-wish" class="form-control" rows="4" placeholder="Happy Birthday Armand!&#10;Cảm ơn anh đã luôn hỗ trợ và dẫn dắt đội ngũ.&#10;Chúc anh nhiều sức khỏe và thành công."></textarea>
+      </div>
+
+      <div class="form-field">
+        <label>Màu giấy note tùy chọn</label>
+        <div class="color-swatches" id="note-color-swatches"></div>
+      </div>
+
+      <div class="two-col">
+        <div class="form-field">
+          <label>Ảnh cá nhân / kỷ niệm (1–3 ảnh, bấm ảnh để chỉnh)</label>
+          <div class="dropzone" id="member-photo-dropzone">
+            <input type="file" id="member-photo-input" accept="image/*" multiple />
+            <div>📷 Kéo thả hoặc chọn nhiều ảnh</div>
+            <p class="dropzone-hint">Bấm ảnh bên dưới để chỉnh khung, kéo vị trí hoặc đổi thứ tự</p>
+          </div>
+          <div class="modal-photo-grid" id="member-photo-preview"></div>
+        </div>
+
+        <div class="form-field">
+          <label>Chữ ký PNG hoặc Ảnh người viết</label>
+          <div style="display:flex; gap:6px; margin-bottom:8px;">
+            <button type="button" class="btn btn-sm" id="sigtype-signature-btn" onclick="setModalSigType('signature')">✒️ Chữ ký nét mực</button>
+            <button type="button" class="btn btn-sm" id="sigtype-avatar-btn" onclick="setModalSigType('avatar')">🧑 Ảnh người viết</button>
+          </div>
+          <div class="dropzone" id="member-sig-dropzone">
+            <input type="file" id="member-sig-input" accept="image/*" />
+            <div>🖼️ Kéo thả chữ ký PNG hoặc ảnh người viết</div>
+          </div>
+          <div class="preview-box preview-sig" id="member-sig-preview"></div>
+        </div>
+      </div>
+
+      <!-- Interactive Photo Framer -->
+      <div class="framer-panel" id="photo-framer-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <strong style="font-size:0.84rem; color:var(--brown-deep);" id="framer-title">✂️ Chỉnh khung hiển thị ảnh #1</strong>
+          <button type="button" class="btn btn-sm" onclick="closePhotoFramer()">Ẩn chỉnh khung</button>
+        </div>
+        <div class="framer-layout">
+          <div class="framer-stage">
+            <div class="framer-viewport" id="framer-viewport" title="Kéo ảnh bằng chuột hoặc ngón tay để căn chỉnh">
+              <img id="framer-img" alt="Framer preview" />
+            </div>
+            <small style="color:var(--brown-soft); font-size:0.72rem;">Kéo trực tiếp trên ảnh để căn</small>
+          </div>
+          <div class="framer-controls">
+            <div class="framer-row">
+              <label>Kiểu khung</label>
+              <button type="button" class="btn btn-sm" id="framer-fit-cover" onclick="updateActiveFrame({ fit: 'cover' })">Lấp khung</button>
+              <button type="button" class="btn btn-sm" id="framer-fit-contain" onclick="updateActiveFrame({ fit: 'contain' })">Đủ ảnh</button>
+            </div>
+            <div class="framer-row">
+              <label>Phóng to</label>
+              <input type="range" id="framer-zoom" min="100" max="220" step="2" oninput="updateActiveFrame({ zoom: Number(this.value) / 100 })" />
+              <span id="framer-zoom-val" style="min-width:38px; text-align:right;">100%</span>
+            </div>
+            <div class="framer-row">
+              <label>Trái ↔ Phải</label>
+              <input type="range" id="framer-x" min="0" max="100" step="1" oninput="updateActiveFrame({ posX: Number(this.value) })" />
+            </div>
+            <div class="framer-row">
+              <label>Trên ↕ Dưới</label>
+              <input type="range" id="framer-y" min="0" max="100" step="1" oninput="updateActiveFrame({ posY: Number(this.value) })" />
+            </div>
+            <div class="framer-row" style="justify-content:flex-end;">
+              <button type="button" class="btn btn-sm" onclick="updateActiveFrame({ fit: 'cover', posX: 50, posY: 35, zoom: 1 })">↺ Căn giữa mặc định</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Hoặc vẽ chữ ký trực tiếp (tự tạo PNG nền trong suốt)</label>
+        <div class="sig-pad-wrap">
+          <canvas id="sig-pad" class="sig-pad-canvas" width="520" height="120"></canvas>
+          <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px;">
+            <button type="button" class="btn btn-sm" onclick="clearSigPad()">Xóa nét vẽ</button>
+            <button type="button" class="btn btn-sm btn-rose" onclick="applySigPad()">✓ Dùng chữ ký vừa vẽ</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+        <button class="btn" onclick="closeMemberModal()">Hủy</button>
+        <button class="btn btn-primary" onclick="saveMemberFromModal()">💾 Lưu thành viên</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY LIGHTBOX -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <div id="lightbox-card" onclick="event.stopPropagation()" style="position:relative;">
+      <button type="button" class="btn btn-sm" onclick="closeLightbox()" style="position:absolute; top:-12px; right:-10px; border-radius:999px; background:var(--brown-deep); color:#fff; border-color:#fff;">✕</button>
+      <img id="lightbox-img" alt="Zoomed memory" />
+      <div id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND MUSIC PLAYER -->
+  <audio id="bg-music-player" loop playsinline preload="auto"></audio>
+
+  <!-- PRINT / PDF CONTAINER -->
+  <div id="print-container"></div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <!-- EMBEDDED DATA PLACEHOLDER FOR EXPORTED HTML CARD -->
+  <script id="embedded-card-data" type="application/json">null</script>
+
+  <script>
+    /* =========================================================================
+       1. BUILT-IN OFFLINE SVG SAMPLE ILLUSTRATIONS (NO INTERNET REQUIRED)
+       ========================================================================= */
+    function svgToDataUrl(svg) {
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg.trim());
+    }
+
+    function makeSamplePhotoSvg(bg1, bg2, emoji, title, subtitle) {
+      return svgToDataUrl(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="${bg1}"/>
+              <stop offset="100%" stop-color="${bg2}"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="320" fill="url(#g)"/>
+          <circle cx="330" cy="65" r="45" fill="rgba(255,255,255,0.28)"/>
+          <circle cx="68" cy="255" r="55" fill="rgba(255,255,255,0.2)"/>
+          <rect x="24" y="24" width="352" height="272" rx="14" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-dasharray="6 6"/>
+          <text x="200" y="148" text-anchor="middle" font-size="76">${emoji}</text>
+          <text x="200" y="218" text-anchor="middle" font-family="Georgia, serif" font-size="24" font-weight="bold" fill="#3f2c20">${title}</text>
+          <text x="200" y="248" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#6b4e39">${subtitle}</text>
+        </svg>
+      `);
+    }
+
+    function makeSampleSigSvg(pathD, nameText) {
+      return svgToDataUrl(`
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 90">
+          <path d="${pathD}" fill="none" stroke="#2f2015" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="135" y="76" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="13" fill="#5c4332">${nameText}</text>
+        </svg>
+      `);
+    }
+
+    const NOTE_COLORS = [
+      { id: 'cream', name: 'Kem cổ điển', hex: '#fdf6e2' },
+      { id: 'pink', name: 'Hồng pastel', hex: '#fae0e4' },
+      { id: 'sage', name: 'Xanh olive nhạt', hex: '#e5ecd9' },
+      { id: 'butter', name: 'Vàng bơ', hex: '#fbf0c6' },
+      { id: 'lavender', name: 'Tím phấn', hex: '#ede4f3' },
+      { id: 'kraft', name: 'Beige vintage', hex: '#efe1cb' }
+    ];
+
+    const STICKER_SVGS = [
+      // Cake
+      `<svg width="48" height="48" viewBox="0 0 64 64"><rect x="12" y="34" width="40" height="20" rx="4" fill="#f4b8c1" stroke="#5c4332" stroke-width="2"/><path d="M12 40 Q20 46 28 40 T44 40 T52 40" fill="none" stroke="#fffdf8" stroke-width="4" stroke-linecap="round"/><rect x="18" y="22" width="28" height="13" rx="3" fill="#fdf1d6" stroke="#5c4332" stroke-width="2"/><line x1="32" y1="12" x2="32" y2="22" stroke="#a93f35" stroke-width="3"/><path d="M32 4 C36 9 35 13 32 13 C29 13 28 9 32 4 Z" fill="#f3b24b"/></svg>`,
+      // Heart seal
+      `<svg width="42" height="42" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="#a93f35" opacity="0.9"/><circle cx="32" cy="32" r="19" fill="none" stroke="#e9c88c" stroke-width="1.5" stroke-dasharray="3 2"/><path d="M32 44 C20 35 18 24 25 20 C29 18 32 22 32 24 C32 22 35 18 39 20 C46 24 44 35 32 44 Z" fill="#fdf6e9"/></svg>`,
+      // Botanical leaf
+      `<svg width="46" height="46" viewBox="0 0 64 64"><path d="M14 52 Q30 34 50 12" fill="none" stroke="#6f8760" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="28" cy="32" rx="9" ry="4" transform="rotate(-35 28 32)" fill="#a5bd92"/><ellipse cx="38" cy="24" rx="8" ry="3.5" transform="rotate(-35 38 24)" fill="#8ea97a"/><ellipse cx="36" cy="37" rx="8" ry="3.5" transform="rotate(20 36 37)" fill="#b8cca6"/></svg>`,
+      // Star cluster
+      `<svg width="44" height="44" viewBox="0 0 64 64"><polygon points="32,8 37,22 52,22 40,31 44,46 32,37 20,46 24,31 12,22 27,22" fill="#e2b458" stroke="#7b5e47" stroke-width="1.8"/><circle cx="50" cy="48" r="4" fill="#e89ca7"/></svg>`,
+      // Vintage stamp
+      `<svg width="52" height="42" viewBox="0 0 76 60"><rect x="4" y="4" width="68" height="52" fill="#fbf3e4" stroke="#a93f35" stroke-width="2" stroke-dasharray="4 3"/><text x="38" y="27" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="bold" fill="#a93f35">BEST WISHES</text><text x="38" y="44" text-anchor="middle" font-size="14">✨ 💛 ✨</text></svg>`,
+      // Paperclip
+      `<svg width="34" height="48" viewBox="0 0 40 64"><path d="M14 16 V46 A8 8 0 0 0 30 46 V12 A11 11 0 0 0 8 12 V42" fill="none" stroke="#8a7968" stroke-width="3" stroke-linecap="round"/></svg>`,
+      // Ribbon bow
+      `<svg width="46" height="36" viewBox="0 0 64 48"><path d="M32 24 L10 12 Q6 24 12 34 Z" fill="#e9a9b3" stroke="#5c4332" stroke-width="1.8"/><path d="M32 24 L54 12 Q58 24 52 34 Z" fill="#e9a9b3" stroke="#5c4332" stroke-width="1.8"/><circle cx="32" cy="24" r="5" fill="#d97b89" stroke="#5c4332" stroke-width="1.8"/></svg>`
+    ];
+
+    const TAPE_CLASSES = ['tape-pink-dots', 'tape-sage-stripe', 'tape-gold-kraft', 'tape-gingham', 'tape-mint', 'tape-vintage-text'];
+    const PAPER_BG_CLASSES = ['bg-lined', 'bg-dotted', 'bg-grid', 'bg-kraft'];
+
+    function createDefaultData() {
+      return {
+        recipientName: 'Armand Dore',
+        recipientTitle: 'Head of SHE & Inspiration',
+        senderTeam: 'SHE Team',
+        birthdayDate: '26/11/2026',
+        introWish: 'A collection of memories and birthday wishes from SHE Team.',
+        closingWish: 'Cảm ơn anh vì sự đồng hành, hỗ trợ và truyền cảm hứng cho đội ngũ SHE.',
+        includeMemberPhotosInGallery: true,
+        bgMusic: '',
+        bgMusicName: '',
+        coverPhoto: makeSamplePhotoSvg('#f6d7dc', '#ecd7b9', '🎂', 'Happy Birthday Boss!', 'SHE Team Memory Album'),
+        galleryPhotos: [
+          { id: 'g1', caption: 'SHE Team Gathering', src: makeSamplePhotoSvg('#dce7d5', '#f3e2c7', '🥂', 'Team Celebration', 'Together We Grow') },
+          { id: 'g2', caption: 'Safety First Workshop', src: makeSamplePhotoSvg('#f5ded8', '#e5d4be', '🏆', 'SHE Milestone', 'Proud Moments') }
+        ],
+        members: [
+          {
+            id: 'm1',
+            name: 'Trinh Son',
+            wish: 'Happy Birthday Armand!\nCảm ơn anh đã luôn hỗ trợ và dẫn dắt đội ngũ.\nChúc anh nhiều sức khỏe và thành công.',
+            noteColor: '#fdf6e2',
+            photo: makeSamplePhotoSvg('#f4dcdf', '#ebd7c3', '🌟', 'Great Leadership', 'Trinh Son'),
+            signature: makeSampleSigSvg('M25 52 C45 14, 70 68, 95 34 C112 18, 130 58, 152 38 C176 20, 198 52, 232 30', 'Trinh Son')
+          },
+          {
+            id: 'm2',
+            name: 'Minh Anh',
+            wish: 'Chúc mừng sinh nhật sếp Armand!\nCảm ơn anh luôn lắng nghe, tin tưởng và truyền năng lượng tích cực cho cả team mỗi ngày.\nWishing you a joyful year ahead!',
+            noteColor: '#fae0e4',
+            photo: makeSamplePhotoSvg('#e4ebd9', '#f7e5cf', '💐', 'Warm Wishes', 'Minh Anh'),
+            signature: makeSampleSigSvg('M22 46 Q55 12, 82 48 T145 36 Q180 20, 225 44', 'Minh Anh')
+          },
+          {
+            id: 'm3',
+            name: 'Hoang Nam',
+            wish: 'Happy Birthday to our amazing leader!\nChúc anh tuổi mới thật nhiều sức khỏe, bình an và tiếp tục đưa SHE Team chinh phục những cột mốc rực rỡ.',
+            noteColor: '#e5ecd9',
+            photo: makeSamplePhotoSvg('#f8e4be', '#eed0c6', '☕', 'Coffee & Mentorship', 'Hoang Nam'),
+            signature: makeSampleSigSvg('M28 54 L64 20 L84 52 L118 24 C144 48, 178 24, 226 40', 'Hoang Nam')
+          },
+          {
+            id: 'm4',
+            name: 'Thu Ha',
+            wish: 'Happy Birthday Armand!\nCảm ơn anh đã tạo nên một môi trường làm việc ấm áp và đầy cảm hứng.\nAlways grateful to work with you!',
+            noteColor: '#fbf0c6',
+            photo: makeSamplePhotoSvg('#ebe1f2', '#f7e2d9', '🎈', 'Happy Memories', 'Thu Ha'),
+            signature: makeSampleSigSvg('M30 42 C60 22, 85 60, 118 30 C145 12, 165 55, 220 34', 'Thu Ha')
+          }
+        ]
+      };
+    }
+
+    /* =========================================================================
+       2. STATE MANAGEMENT & LOCAL STORAGE / EMBEDDED MODE
+       ========================================================================= */
+    const STORAGE_KEY = 'she_scrapbook_birthday_v1';
+    let appState = null;
+    let isViewerOnly = false;
+    let currentMode = 'editor'; // 'editor' | 'card'
+    let soundEnabled = true;
+    let musicUserPaused = false;
+    let audioCtx = null;
+
+    // Flipbook state
+    let logicalPages = []; // array of HTML-descriptor objects
+    let currentSheetIndex = 0; // how many sheets are flipped
+    let totalSheets = 0;
+    let forceSingleMode = false;
+    let draggedMemberId = null;
+
+    // Modal temp state
+    let modalPhotos = [];
+    let modalSigData = '';
+    let modalSigType = 'signature'; // 'signature' | 'avatar'
+    let modalSigFrame = { fit: 'cover', posX: 50, posY: 25, zoom: 1 };
+    let activeFramerTarget = null; // null | 'photo:0' | 'photo:1' | 'photo:2' | 'sig'
+    let modalNoteColor = '#fdf6e2';
+
+    function normalizePhotoItem(item) {
+      if (!item) return { src: '', fit: 'cover', posX: 50, posY: 35, zoom: 1 };
+      if (typeof item === 'string') return { src: item, fit: 'cover', posX: 50, posY: 35, zoom: 1 };
+      return {
+        src: item.src || '',
+        fit: item.fit === 'contain' ? 'contain' : 'cover',
+        posX: typeof item.posX === 'number' ? item.posX : 50,
+        posY: typeof item.posY === 'number' ? item.posY : 35,
+        zoom: typeof item.zoom === 'number' ? item.zoom : 1
+      };
+    }
+
+    function getMemberPhotos(m) {
+      if (m && Array.isArray(m.photos) && m.photos.length) return m.photos.map(normalizePhotoItem);
+      if (m && m.photo) return [normalizePhotoItem(m.photo)];
+      return [];
+    }
+
+    function renderPhotoImgStyle(photoObj) {
+      const p = normalizePhotoItem(photoObj);
+      return `object-fit:${p.fit}; object-position:${p.posX}% ${p.posY}%; transform:scale(${p.zoom}); transform-origin:${p.posX}% ${p.posY}%;`;
+    }
+
+    function loadInitialState() {
+      const embeddedEl = document.getElementById('embedded-card-data');
+      if (embeddedEl && embeddedEl.textContent.trim() !== 'null' && embeddedEl.textContent.trim() !== '') {
+        try {
+          const parsed = JSON.parse(embeddedEl.textContent);
+          if (parsed && parsed.recipientName) {
+            appState = parsed;
+            isViewerOnly = true;
+            document.body.classList.add('viewer-only');
+            currentMode = 'card';
+            return;
+          }
+        } catch (e) { console.warn('Failed to parse embedded data', e); }
+      }
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed && Array.isArray(parsed.members)) {
+            appState = parsed;
+            return;
+          }
+        } catch (e) {}
+      }
+      appState = createDefaultData();
+    }
+
+    function persistState() {
+      if (isViewerOnly) return;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        // If MP3 pushes localStorage over browser quota, save everything except bgMusic
+        try {
+          const lite = { ...appState, bgMusic: '', bgMusicName: '' };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(lite));
+          showToast('File nhạc MP3 hơi lớn để lưu tạm F5, nhưng vẫn giữ nguyên để Export HTML!');
+        } catch (e2) {
+          showToast('Bộ nhớ trình duyệt gần đầy, hãy nén bớt ảnh hoặc xuất HTML ngay.');
+        }
+      }
+    }
+
+    function resetToSampleData() {
+      if (!confirm('Khôi phục toàn bộ dữ liệu về mẫu Armand Dore & SHE Team?')) return;
+      appState = createDefaultData();
+      persistState();
+      renderEditor();
+      renderCardCover();
+      buildFlipbook();
+      showToast('Đã khôi phục dữ liệu mẫu!');
+    }
+
+    /* =========================================================================
+       3. IMAGE COMPRESSION & DRAG-DROP HELPERS
+       ========================================================================= */
+    function readImageCompressed(file, isPngSignature = false) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = reject;
+        reader.onload = () => {
+          // Keep PNG signature transparency intact!
+          if (isPngSignature && file.type === 'image/png') {
+            const img = new Image();
+            img.onload = () => {
+              const maxW = 600;
+              if (img.width <= maxW) { resolve(reader.result); return; }
+              const scale = maxW / img.width;
+              const canvas = document.createElement('canvas');
+              canvas.width = maxW;
+              canvas.height = Math.round(img.height * scale);
+              canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+              resolve(canvas.toDataURL('image/png'));
+            };
+            img.src = reader.result;
+            return;
+          }
+
+          const img = new Image();
+          img.onerror = () => resolve(reader.result);
+          img.onload = () => {
+            const maxDim = 1100;
+            let w = img.width, h = img.height;
+            if (w > maxDim || h > maxDim) {
+              if (w >= h) { h = Math.round(h * maxDim / w); w = maxDim; }
+              else { w = Math.round(w * maxDim / h); h = maxDim; }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL(file.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.84));
+          };
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function readAudioDataUrl(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = reject;
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function bindDropzone(dropzoneId, inputId, onFiles, multiple = false, acceptFilter = null) {
+      const dz = document.getElementById(dropzoneId);
+      const inp = document.getElementById(inputId);
+      if (!dz || !inp) return;
+
+      dz.addEventListener('click', () => inp.click());
+      inp.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files.length) {
+          onFiles(multiple ? Array.from(e.target.files) : [e.target.files[0]]);
+        }
+        inp.value = '';
+      });
+
+      ['dragenter', 'dragover'].forEach(ev => {
+        dz.addEventListener(ev, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dz.classList.add('dragover');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(ev => {
+        dz.addEventListener(ev, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dz.classList.remove('dragover');
+        });
+      });
+
+      dz.addEventListener('drop', (e) => {
+        const check = acceptFilter || (f => f.type.startsWith('image/'));
+        const files = Array.from(e.dataTransfer.files || []).filter(check);
+        if (files.length) onFiles(multiple ? files : [files[0]]);
+      });
+    }
+
+    /* =========================================================================
+       4. EDITOR RENDERING & INTERACTIONS
+       ========================================================================= */
+    function renderEditor() {
+      document.getElementById('inp-recipient').value = appState.recipientName || '';
+      document.getElementById('inp-title').value = appState.recipientTitle || '';
+      document.getElementById('inp-date').value = appState.birthdayDate || '';
+      document.getElementById('inp-team').value = appState.senderTeam || '';
+      document.getElementById('inp-intro').value = appState.introWish || '';
+      document.getElementById('inp-closing').value = appState.closingWish || '';
+      document.getElementById('inp-include-member-photos').checked = appState.includeMemberPhotosInGallery !== false;
+      document.getElementById('toolbar-recipient-badge').textContent = appState.recipientName || 'Birthday Card';
+
+      // Cover preview
+      const coverWrap = document.getElementById('cover-preview-wrap');
+      coverWrap.innerHTML = appState.coverPhoto
+        ? `<img src="${appState.coverPhoto}" alt="Cover preview" />`
+        : '';
+
+      // Gallery preview
+      const gGrid = document.getElementById('editor-gallery-grid');
+      gGrid.innerHTML = (appState.galleryPhotos || []).map((g, idx) => `
+        <div class="editor-gallery-item">
+          <img src="${g.src}" alt="${escapeHtml(g.caption || 'Team photo')}" />
+          <button class="editor-gallery-remove" onclick="removeGalleryPhoto(${idx})" title="Xóa ảnh">×</button>
+        </div>
+      `).join('');
+
+      // Music preview
+      const musicWrap = document.getElementById('music-preview-wrap');
+      if (musicWrap) {
+        if (appState.bgMusic) {
+          musicWrap.innerHTML = `
+            <div style="background:var(--paper-ivory); border:1px solid rgba(123,94,71,0.25); border-radius:10px; padding:10px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;">
+                <span style="font-size:0.84rem; font-weight:600; color:var(--brown-deep); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">🎵 ${escapeHtml(appState.bgMusicName || 'nhac-nen.mp3')}</span>
+                <button type="button" class="btn btn-sm btn-danger" onclick="removeBgMusic()">🗑️ Xóa</button>
+              </div>
+              <audio controls src="${appState.bgMusic}" style="width:100%; height:34px;"></audio>
+            </div>
+          `;
+        } else {
+          musicWrap.innerHTML = '';
+        }
+      }
+      syncBgMusicUI();
+
+      // Members list
+      document.getElementById('member-count').textContent = appState.members.length;
+      const list = document.getElementById('members-list');
+      if (!appState.members.length) {
+        list.innerHTML = `<div style="text-align:center; padding:32px; color:var(--brown-soft);">Chưa có thành viên nào. Nhấn <strong>+ Thêm thành viên</strong> để bắt đầu.</div>`;
+        return;
+      }
+
+      list.innerHTML = appState.members.map((m, idx) => {
+        const photos = getMemberPhotos(m);
+        const mainPhotoObj = photos[0] || normalizePhotoItem(makeSamplePhotoSvg('#efe2cb', '#f4d8dc', '📷', m.name, 'Photo'));
+        return `
+        <div class="member-row" draggable="true" data-id="${m.id}"
+             ondragstart="onMemberDragStart(event, '${m.id}')"
+             ondragover="onMemberDragOver(event)"
+             ondragleave="onMemberDragLeave(event)"
+             ondrop="onMemberDrop(event, '${m.id}')"
+             ondragend="onMemberDragEnd(event)">
+          <div class="drag-handle" title="Kéo thả để đổi thứ tự">⋮⋮</div>
+          <img class="member-row-thumb" src="${mainPhotoObj.src}" style="${renderPhotoImgStyle(mainPhotoObj)}" alt="${escapeHtml(m.name)}" />
+          <div class="member-row-info">
+            <h4>
+              <span>#${idx + 1} ${escapeHtml(m.name)}</span>
+              <span class="note-dot" style="background:${m.noteColor || '#fdf6e2'}" title="Màu giấy note"></span>
+              ${photos.length > 1 ? `<span style="font-size:0.72rem; background:var(--pink-pastel); padding:1px 7px; border-radius:999px; font-weight:600;">📷 ${photos.length} ảnh</span>` : ''}
+            </h4>
+            <p class="member-row-wish">${escapeHtml(m.wish)}</p>
+          </div>
+          <div class="member-row-actions">
+            ${m.signature ? `<img class="member-row-sig" src="${m.signature}" style="${m.sigType === 'avatar' ? 'border-radius:50%; width:30px; height:30px; object-fit:cover;' : ''}" alt="Chữ ký" />` : ''}
+            <button class="btn btn-sm" onclick="moveMember(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Lên">↑</button>
+            <button class="btn btn-sm" onclick="moveMember(${idx}, 1)" ${idx === appState.members.length - 1 ? 'disabled' : ''} title="Xuống">↓</button>
+            <button class="btn btn-sm" onclick="openMemberModal('${m.id}')">✏️ Sửa</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteMember('${m.id}')">🗑️</button>
+          </div>
+        </div>
+      `;
+      }).join('');
+    }
+
+    function updateGeneral(key, value) {
+      appState[key] = value;
+      persistState();
+      if (key === 'recipientName') {
+        document.getElementById('toolbar-recipient-badge').textContent = value || 'Birthday Card';
+      }
+    }
+
+    function removeGalleryPhoto(index) {
+      appState.galleryPhotos.splice(index, 1);
+      persistState();
+      renderEditor();
+    }
+
+    function removeBgMusic() {
+      appState.bgMusic = '';
+      appState.bgMusicName = '';
+      stopBgMusic();
+      persistState();
+      renderEditor();
+      showToast('Đã xóa nhạc nền.');
+    }
+
+    function moveMember(index, dir) {
+      const target = index + dir;
+      if (target < 0 || target >= appState.members.length) return;
+      const arr = appState.members;
+      [arr[index], arr[target]] = [arr[target], arr[index]];
+      persistState();
+      renderEditor();
+    }
+
+    function deleteMember(id) {
+      const m = appState.members.find(x => x.id === id);
+      if (!confirm(`Xóa thành viên "${m ? m.name : ''}"?`)) return;
+      appState.members = appState.members.filter(x => x.id !== id);
+      persistState();
+      renderEditor();
+      showToast('Đã xóa thành viên.');
+    }
+
+    // Drag & Drop Reorder
+    function onMemberDragStart(e, id) {
+      draggedMemberId = id;
+      e.currentTarget.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+    function onMemberDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    }
+    function onMemberDragLeave(e) {
+      e.currentTarget.classList.remove('drag-over');
+    }
+    function onMemberDrop(e, targetId) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      if (!draggedMemberId || draggedMemberId === targetId) return;
+      const fromIdx = appState.members.findIndex(m => m.id === draggedMemberId);
+      const toIdx = appState.members.findIndex(m => m.id === targetId);
+      if (fromIdx < 0 || toIdx < 0) return;
+      const [moved] = appState.members.splice(fromIdx, 1);
+      appState.members.splice(toIdx, 0, moved);
+      persistState();
+      renderEditor();
+    }
+    function onMemberDragEnd(e) {
+      e.currentTarget.classList.remove('dragging');
+      document.querySelectorAll('.member-row').forEach(el => el.classList.remove('drag-over'));
+      draggedMemberId = null;
+    }
+
+    /* ================= MEMBER MODAL & SIGNATURE PAD ================= */
+    function renderColorSwatches() {
+      const container = document.getElementById('note-color-swatches');
+      container.innerHTML = NOTE_COLORS.map(c => `
+        <button type="button"
+          class="color-swatch ${modalNoteColor === c.hex ? 'selected' : ''}"
+          style="background:${c.hex}"
+          title="${c.name}"
+          onclick="selectNoteColor('${c.hex}')"></button>
+      `).join('');
+    }
+
+    function selectNoteColor(hex) {
+      modalNoteColor = hex;
+      renderColorSwatches();
+    }
+
+    function openMemberModal(editId = null) {
+      const modal = document.getElementById('member-modal');
+      const existing = editId ? appState.members.find(m => m.id === editId) : null;
+
+      document.getElementById('modal-title').textContent = existing ? `Sửa thành viên: ${existing.name}` : 'Thêm thành viên mới';
+      document.getElementById('m-edit-id').value = existing ? existing.id : '';
+      document.getElementById('m-name').value = existing ? existing.name : '';
+      document.getElementById('m-wish').value = existing ? existing.wish : `Happy Birthday ${appState.recipientName || 'Armand'}!\nCảm ơn anh đã luôn hỗ trợ và dẫn dắt đội ngũ.\nChúc anh nhiều sức khỏe và thành công.`;
+      modalNoteColor = existing ? (existing.noteColor || '#fdf6e2') : NOTE_COLORS[appState.members.length % NOTE_COLORS.length].hex;
+      modalPhotos = existing ? getMemberPhotos(existing).map(normalizePhotoItem) : [];
+      modalSigData = existing ? (existing.signature || '') : '';
+      modalSigType = existing && existing.sigType === 'avatar' ? 'avatar' : 'signature';
+      modalSigFrame = existing && existing.sigFrame ? normalizePhotoItem({ ...existing.sigFrame, src: modalSigData }) : { fit: 'cover', posX: 50, posY: 25, zoom: 1 };
+      activeFramerTarget = modalPhotos.length ? 'photo:0' : null;
+
+      renderColorSwatches();
+      renderModalPreviews();
+      clearSigPad();
+      modal.classList.add('open');
+    }
+
+    function closeMemberModal() {
+      document.getElementById('member-modal').classList.remove('open');
+    }
+
+    function setModalSigType(type) {
+      modalSigType = type;
+      if (type === 'avatar' && modalSigData) {
+        activeFramerTarget = 'sig';
+      } else if (type === 'signature' && activeFramerTarget === 'sig') {
+        activeFramerTarget = modalPhotos.length ? 'photo:0' : null;
+      }
+      renderModalPreviews();
+    }
+
+    function selectFramerTarget(target) {
+      activeFramerTarget = target;
+      renderModalPreviews();
+    }
+
+    function closePhotoFramer() {
+      activeFramerTarget = null;
+      renderModalPreviews();
+    }
+
+    function getActiveFrameObj() {
+      if (!activeFramerTarget) return null;
+      if (activeFramerTarget === 'sig') {
+        if (!modalSigData) return null;
+        return { ...modalSigFrame, src: modalSigData };
+      }
+      if (activeFramerTarget.startsWith('photo:')) {
+        const idx = Number(activeFramerTarget.split(':')[1]);
+        return modalPhotos[idx] || null;
+      }
+      return null;
+    }
+
+    function updateActiveFrame(patch) {
+      if (!activeFramerTarget) return;
+      if (activeFramerTarget === 'sig') {
+        modalSigFrame = { ...modalSigFrame, ...patch };
+      } else if (activeFramerTarget.startsWith('photo:')) {
+        const idx = Number(activeFramerTarget.split(':')[1]);
+        if (!modalPhotos[idx]) return;
+        modalPhotos[idx] = { ...modalPhotos[idx], ...patch };
+      }
+      renderFramerPanel();
+      // Update chip thumbnail live without full DOM tear-down during slider drag
+      document.querySelectorAll('#member-photo-preview .modal-photo-chip img').forEach((img, idx) => {
+        if (modalPhotos[idx]) img.setAttribute('style', renderPhotoImgStyle(modalPhotos[idx]));
+      });
+    }
+
+    function renderFramerPanel() {
+      const panel = document.getElementById('photo-framer-panel');
+      const obj = getActiveFrameObj();
+      if (!panel || !obj || !obj.src) {
+        if (panel) panel.classList.remove('open');
+        return;
+      }
+      panel.classList.add('open');
+      const isSig = activeFramerTarget === 'sig';
+      document.getElementById('framer-title').textContent = isSig
+        ? '✂️ Chỉnh khung Ảnh người viết'
+        : `✂️ Chỉnh khung Ảnh #${Number(activeFramerTarget.split(':')[1]) + 1}`;
+      const vp = document.getElementById('framer-viewport');
+      vp.classList.toggle('is-avatar', isSig);
+      const img = document.getElementById('framer-img');
+      if (img.getAttribute('src') !== obj.src) img.src = obj.src;
+      img.setAttribute('style', renderPhotoImgStyle(obj));
+
+      document.getElementById('framer-fit-cover').classList.toggle('active-tab', obj.fit !== 'contain');
+      document.getElementById('framer-fit-contain').classList.toggle('active-tab', obj.fit === 'contain');
+      document.getElementById('framer-zoom').value = Math.round((obj.zoom || 1) * 100);
+      document.getElementById('framer-zoom-val').textContent = Math.round((obj.zoom || 1) * 100) + '%';
+      document.getElementById('framer-x').value = Math.round(obj.posX);
+      document.getElementById('framer-y').value = Math.round(obj.posY);
+    }
+
+    function initFramerDrag() {
+      const vp = document.getElementById('framer-viewport');
+      if (!vp) return;
+      let dragging = false;
+      let startX = 0, startY = 0, origX = 50, origY = 35;
+
+      vp.addEventListener('pointerdown', (e) => {
+        const obj = getActiveFrameObj();
+        if (!obj) return;
+        e.preventDefault();
+        vp.setPointerCapture(e.pointerId);
+        dragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        origX = obj.posX;
+        origY = obj.posY;
+      });
+      vp.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const nextX = Math.max(0, Math.min(100, Math.round(origX - dx * 0.65)));
+        const nextY = Math.max(0, Math.min(100, Math.round(origY - dy * 0.65)));
+        updateActiveFrame({ posX: nextX, posY: nextY });
+      });
+      const stop = () => { dragging = false; };
+      vp.addEventListener('pointerup', stop);
+      vp.addEventListener('pointercancel', stop);
+    }
+
+    function moveModalPhoto(idx, dir, e) {
+      if (e) e.stopPropagation();
+      const target = idx + dir;
+      if (target < 0 || target >= modalPhotos.length) return;
+      [modalPhotos[idx], modalPhotos[target]] = [modalPhotos[target], modalPhotos[idx]];
+      if (activeFramerTarget === `photo:${idx}`) activeFramerTarget = `photo:${target}`;
+      else if (activeFramerTarget === `photo:${target}`) activeFramerTarget = `photo:${idx}`;
+      renderModalPreviews();
+    }
+
+    function removeModalPhoto(idx, e) {
+      if (e) e.stopPropagation();
+      modalPhotos.splice(idx, 1);
+      if (activeFramerTarget === `photo:${idx}`) {
+        activeFramerTarget = modalPhotos.length ? 'photo:0' : null;
+      } else if (activeFramerTarget && activeFramerTarget.startsWith('photo:')) {
+        const cur = Number(activeFramerTarget.split(':')[1]);
+        if (cur > idx) activeFramerTarget = `photo:${cur - 1}`;
+      }
+      renderModalPreviews();
+    }
+
+    function renderModalPreviews() {
+      document.getElementById('sigtype-signature-btn').classList.toggle('active-tab', modalSigType === 'signature');
+      document.getElementById('sigtype-avatar-btn').classList.toggle('active-tab', modalSigType === 'avatar');
+
+      document.getElementById('member-photo-preview').innerHTML = modalPhotos.map((p, idx) => {
+        const isActive = activeFramerTarget === `photo:${idx}`;
+        return `
+          <div class="modal-photo-chip ${isActive ? 'active-framer' : ''}" onclick="selectFramerTarget('photo:${idx}')" title="Bấm để chỉnh khung hiển thị">
+            <img src="${p.src}" style="${renderPhotoImgStyle(p)}" alt="Preview ${idx + 1}" />
+            <span class="modal-photo-badge">${idx === 0 ? '#1 Chính' : '#' + (idx + 1)}</span>
+            <button type="button" class="modal-photo-remove" onclick="removeModalPhoto(${idx}, event)" title="Xóa ảnh">×</button>
+            ${modalPhotos.length > 1 ? `
+              <div class="modal-photo-order">
+                <button type="button" onclick="moveModalPhoto(${idx}, -1, event)" ${idx === 0 ? 'disabled' : ''} title="Đưa lên trước">←</button>
+                <button type="button" onclick="moveModalPhoto(${idx}, 1, event)" ${idx === modalPhotos.length - 1 ? 'disabled' : ''} title="Đưa ra sau">→</button>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+
+      const sigPreview = document.getElementById('member-sig-preview');
+      if (modalSigData) {
+        if (modalSigType === 'avatar') {
+          const sigObj = { ...modalSigFrame, src: modalSigData };
+          sigPreview.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="sig-avatar-wrap" style="margin:0; cursor:pointer;" onclick="selectFramerTarget('sig')">
+                <img src="${modalSigData}" style="${renderPhotoImgStyle(sigObj)}" alt="Avatar preview" />
+              </div>
+              <button type="button" class="btn btn-sm ${activeFramerTarget === 'sig' ? 'active-tab' : ''}" onclick="selectFramerTarget('sig')">✂️ Chỉnh khung ảnh</button>
+            </div>
+          `;
+        } else {
+          sigPreview.innerHTML = `<img src="${modalSigData}" alt="Signature preview" />`;
+        }
+      } else {
+        sigPreview.innerHTML = '';
+      }
+
+      renderFramerPanel();
+    }
+
+    function saveMemberFromModal() {
+      const id = document.getElementById('m-edit-id').value;
+      const name = document.getElementById('m-name').value.trim();
+      const wish = document.getElementById('m-wish').value.trim();
+      if (!name || !wish) {
+        showToast('Vui lòng nhập đầy đủ họ tên và lời chúc!');
+        return;
+      }
+
+      const finalPhotos = modalPhotos.length
+        ? modalPhotos.map(normalizePhotoItem)
+        : [normalizePhotoItem(makeSamplePhotoSvg('#f4dcdf', '#ebd7c3', '📸', name, appState.senderTeam || 'Team Memory'))];
+
+      const memberObj = {
+        id: id || ('m_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6)),
+        name,
+        wish,
+        noteColor: modalNoteColor,
+        photo: finalPhotos[0].src,
+        photos: finalPhotos,
+        signature: modalSigData || makeSampleSigSvg('M30 48 Q75 18, 115 46 T215 36', name),
+        sigType: modalSigData ? modalSigType : 'signature',
+        sigFrame: modalSigFrame
+      };
+
+      if (id) {
+        const idx = appState.members.findIndex(m => m.id === id);
+        if (idx >= 0) appState.members[idx] = memberObj;
+      } else {
+        appState.members.push(memberObj);
+      }
+
+      persistState();
+      closeMemberModal();
+      renderEditor();
+      showToast(id ? 'Đã cập nhật thành viên!' : 'Đã thêm thành viên mới!');
+    }
+
+    // Drawing Signature Pad
+    let sigDrawing = false;
+    let sigHasInk = false;
+    function initSigPad() {
+      const canvas = document.getElementById('sig-pad');
+      const ctx = canvas.getContext('2d');
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 2.8;
+      ctx.strokeStyle = '#2f2015';
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: (clientX - rect.left) * (canvas.width / rect.width),
+          y: (clientY - rect.top) * (canvas.height / rect.height)
+        };
+      }
+
+      function start(e) {
+        e.preventDefault();
+        sigDrawing = true;
+        sigHasInk = true;
+        const p = getPos(e);
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+      }
+
+      function move(e) {
+        if (!sigDrawing) return;
+        e.preventDefault();
+        const p = getPos(e);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+      }
+
+      function end() { sigDrawing = false; }
+
+      canvas.addEventListener('mousedown', start);
+      canvas.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', end);
+      canvas.addEventListener('touchstart', start, { passive: false });
+      canvas.addEventListener('touchmove', move, { passive: false });
+      canvas.addEventListener('touchend', end);
+    }
+
+    function clearSigPad() {
+      const canvas = document.getElementById('sig-pad');
+      canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+      sigHasInk = false;
+    }
+
+    function applySigPad() {
+      if (!sigHasInk) {
+        showToast('Hãy vẽ chữ ký trước khi áp dụng!');
+        return;
+      }
+      const canvas = document.getElementById('sig-pad');
+      modalSigData = canvas.toDataURL('image/png');
+      modalSigType = 'signature';
+      if (activeFramerTarget === 'sig') activeFramerTarget = modalPhotos.length ? 'photo:0' : null;
+      renderModalPreviews();
+      showToast('Đã áp dụng chữ ký vừa vẽ!');
+    }
+
+    /* =========================================================================
+       5. SOUND SYNTHESIS & BACKGROUND MP3 MUSIC
+       ========================================================================= */
+    function getBgAudioEl() {
+      return document.getElementById('bg-music-player');
+    }
+
+    function syncBgMusicUI() {
+      const btn = document.getElementById('music-toggle-btn');
+      const audio = getBgAudioEl();
+      if (!btn) return;
+      if (!appState || !appState.bgMusic) {
+        btn.style.display = 'none';
+        return;
+      }
+      btn.style.display = (currentMode === 'card' || isViewerOnly) ? 'inline-flex' : 'none';
+      const playing = audio && !audio.paused && !audio.ended;
+      btn.textContent = playing ? '🎵 Nhạc: Bật' : '🎵 Nhạc: Tắt';
+    }
+
+    function ensureBgMusicPlaying() {
+      if (!soundEnabled || musicUserPaused || !appState || !appState.bgMusic) return;
+      const audio = getBgAudioEl();
+      if (!audio) return;
+      if (audio.getAttribute('src') !== appState.bgMusic) {
+        audio.src = appState.bgMusic;
+      }
+      if (audio.paused) {
+        audio.volume = 0.72;
+        const p = audio.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => syncBgMusicUI()).catch(() => {});
+        } else {
+          syncBgMusicUI();
+        }
+      }
+    }
+
+    function stopBgMusic() {
+      const audio = getBgAudioEl();
+      if (audio && !audio.paused) audio.pause();
+      syncBgMusicUI();
+    }
+
+    function toggleBgMusic() {
+      const audio = getBgAudioEl();
+      if (!audio || !appState || !appState.bgMusic) return;
+      if (audio.paused) {
+        musicUserPaused = false;
+        soundEnabled = true;
+        document.getElementById('sound-toggle-btn').textContent = '🔊 Âm thanh: Bật';
+        ensureBgMusicPlaying();
+      } else {
+        musicUserPaused = true;
+        audio.pause();
+        syncBgMusicUI();
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('sound-toggle-btn').textContent = soundEnabled ? '🔊 Âm thanh: Bật' : '🔇 Âm thanh: Tắt';
+      if (!soundEnabled) {
+        stopBgMusic();
+      } else if (currentMode === 'card') {
+        ensureBgMusicPlaying();
+      }
+    }
+
+    function playPageFlipSound() {
+      if (!soundEnabled) return;
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const duration = 0.24;
+        const bufferSize = Math.floor(audioCtx.sampleRate * duration);
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        for (let i = 0; i < bufferSize; i++) {
+          const env = Math.sin((i / bufferSize) * Math.PI);
+          data[i] = (Math.random() * 2 - 1) * env * 0.35;
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(1400, audioCtx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(650, audioCtx.currentTime + duration);
+        filter.Q.value = 1.2;
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.32, audioCtx.currentTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        noise.start();
+      } catch (e) {}
+    }
+
+    /* =========================================================================
+       6. PAGE BUILDERS (PARTS 2, 3, 4, 5, 6, 7)
+       ========================================================================= */
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function renderCardCover() {
+      document.getElementById('cover-recipient-name').textContent = appState.recipientName || 'Armand Dore';
+      document.getElementById('cover-recipient-title').textContent = appState.recipientTitle || '';
+      document.getElementById('cover-date-badge').textContent = appState.birthdayDate || 'Special Day';
+      document.getElementById('cover-from-team').textContent = `From ${appState.senderTeam || 'SHE Team'}`;
+      const caption = `For ${appState.recipientName || 'Armand'} • ${appState.senderTeam || 'SHE Team'}`;
+      document.getElementById('cover-polaroid-caption').textContent = caption;
+      const coverSrc = appState.coverPhoto || makeSamplePhotoSvg('#f6d7dc', '#ecd7b9', '🎂', 'Happy Birthday!', appState.senderTeam);
+      document.getElementById('cover-photo-img').src = coverSrc;
+      const coverBox = document.getElementById('cover-polaroid-box');
+      if (coverBox) {
+        coverBox.dataset.src = coverSrc;
+        coverBox.dataset.caption = caption;
+      }
+    }
+
+    function openScrapbookEnvelope() {
+      playPageFlipSound();
+      ensureBgMusicPlaying();
+      const wrap = document.getElementById('envelope-wrapper');
+      wrap.classList.add('opening');
+      setTimeout(() => {
+        document.getElementById('envelope-stage').style.display = 'none';
+        document.getElementById('flipbook-stage').classList.add('active');
+        wrap.classList.remove('opening');
+        buildFlipbook();
+      }, 650);
+    }
+
+    function backToCover() {
+      playPageFlipSound();
+      document.getElementById('flipbook-stage').classList.remove('active');
+      document.getElementById('envelope-stage').style.display = 'flex';
+      requestAnimationFrame(fitCardToViewport);
+    }
+
+    function buildInsideFrontCoverHTML() {
+      return `
+        <div class="scrap-page bg-kraft" style="justify-content:center; align-items:center; text-align:center;">
+          <div class="washi-tape tape-gold-kraft" style="top:18px; left:24px; transform:rotate(-12deg);"></div>
+          <div class="washi-tape tape-pink-dots" style="bottom:22px; right:24px; transform:rotate(-8deg);"></div>
+          <div class="sticker" style="top:26px; right:26px; transform:rotate(12deg);">${STICKER_SVGS[2]}</div>
+          <div class="sticker" style="bottom:32px; left:26px; transform:rotate(-10deg);">${STICKER_SVGS[1]}</div>
+
+          <div style="border:2px double rgba(92,67,50,0.35); border-radius:12px; padding:30px 22px; width:86%; background:rgba(255,253,248,0.68);">
+            <div style="font-size:2rem; margin-bottom:6px;">📖</div>
+            <div style="font-family:var(--font-serif); font-size:0.85rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--brown-soft);">Handmade Memory Book</div>
+            <h2 style="font-family:var(--font-serif); font-size:1.55rem; color:var(--brown-deep); margin:10px 0 6px;">${escapeHtml(appState.recipientName)}</h2>
+            <p style="font-family:var(--font-hand); font-size:0.98rem; color:var(--wax-red); margin:0 0 12px;">${escapeHtml(appState.birthdayDate)}</p>
+            <div style="width:60px; height:2px; background:var(--gold-accent); margin:0 auto 12px;"></div>
+            <p style="font-family:var(--font-serif); font-style:italic; font-size:0.88rem; color:var(--brown-ink); margin:0;">Crafted with appreciation by<br/><strong>${escapeHtml(appState.senderTeam)}</strong></p>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildOpeningLetterHTML(pageNum) {
+      const firstName = (appState.recipientName || 'Armand').split(' ')[0];
+      const words = (appState.introWish || '').split(/\s+/).filter(Boolean);
+      const wordsHtml = words.map((w, i) => `<span class="hw-word" style="transition-delay:${i * 75}ms">${escapeHtml(w)}</span>`).join(' ');
+
+      return `
+        <div class="scrap-page bg-lined opening-page" data-type="opening">
+          <div class="washi-tape tape-pink-dots" style="top:14px; left:50%; transform:translateX(-50%) rotate(-2deg);"></div>
+          <div class="sticker" style="top:18px; right:18px; transform:rotate(10deg);">${STICKER_SVGS[4]}</div>
+          <div class="sticker" style="bottom:20px; left:18px; transform:rotate(-8deg);">${STICKER_SVGS[0]}</div>
+
+          <div class="opening-inner">
+            <h2 class="handwriting-dear">Dear ${escapeHtml(firstName)},</h2>
+            <p class="handwriting-intro">${wordsHtml}</p>
+            <div style="font-family:var(--font-hand); font-size:1rem; color:var(--brown-soft);">With warmest wishes,<br/><strong style="color:var(--brown-deep);">${escapeHtml(appState.senderTeam)}</strong></div>
+          </div>
+          <span class="page-number-tag">${pageNum}</span>
+        </div>
+      `;
+    }
+
+    function buildMemberPageHTML(member, idx, pageNum) {
+      // Guarantee non-repeating layout across members:
+      // 8 distinct geometric layouts + prime-stepped variations of paper, tapes, stickers, and micro-rotation
+      const layoutIdx = idx % 8;
+      const bgClass = PAPER_BG_CLASSES[(idx * 3) % PAPER_BG_CLASSES.length];
+      const tapeA = TAPE_CLASSES[(idx * 5) % TAPE_CLASSES.length];
+      const tapeB = TAPE_CLASSES[(idx * 5 + 2) % TAPE_CLASSES.length];
+      const stickerA = STICKER_SVGS[(idx * 2) % STICKER_SVGS.length];
+      const stickerB = STICKER_SVGS[(idx * 2 + 3) % STICKER_SVGS.length];
+
+      // Subtle deterministic per-page tilt offsets so even cyclic layouts feel unique
+      const extraNoteTilt = (((idx * 7) % 5) - 2) * 0.45;
+      const extraPhotoTilt = (((idx * 3) % 5) - 2) * 0.5;
+
+      const lines = (member.wish || '').split(/\r?\n/).filter(l => l.trim().length > 0);
+      const linesHtml = lines.map((line, lIdx) =>
+        `<span class="wish-line" style="transition-delay:${180 + lIdx * 170}ms">${escapeHtml(line)}</span>`
+      ).join('');
+
+      const stickerPositions = [
+        'top:10px; right:14px; transform:rotate(11deg);',
+        'bottom:12px; right:16px; transform:rotate(-9deg);',
+        'top:14px; left:14px; transform:rotate(-12deg);',
+        'bottom:16px; left:16px; transform:rotate(8deg);'
+      ];
+      const sPosA = stickerPositions[idx % 4];
+      const sPosB = stickerPositions[(idx + 2) % 4];
+
+      const photos = getMemberPhotos(member);
+      const mainPhotoObj = photos[0] || normalizePhotoItem('');
+      const extraPhotosHtml = photos.slice(1, 3).map((pObj, eIdx) => {
+        const tapeE = TAPE_CLASSES[(idx + eIdx + 1) % TAPE_CLASSES.length];
+        const cap = `${member.name} • Kỷ niệm ${eIdx + 2}`;
+        return `
+          <div class="polaroid-extra polaroid-extra-${eIdx + 1}"
+               data-src="${escapeHtml(pObj.src)}" data-caption="${escapeHtml(cap)}"
+               onclick="event.stopPropagation(); openLightboxFromEl(this)">
+            <div class="washi-tape ${tapeE}" style="top:-8px; left:50%; transform:translateX(-50%) rotate(${eIdx === 0 ? -4 : 5}deg); width:46px; height:14px;"></div>
+            <div class="polaroid-img-wrap">
+              <img src="${pObj.src}" style="${renderPhotoImgStyle(pObj)}" alt="${escapeHtml(cap)}" />
+            </div>
+            <span class="zoom-hint-badge" style="bottom:1px; right:4px; font-size:0.6rem;">🔍</span>
+          </div>
+        `;
+      }).join('');
+
+      const isAvatarSig = member.sigType === 'avatar' && member.signature;
+      const sigFrameObj = member.sigFrame ? normalizePhotoItem({ ...member.sigFrame, src: member.signature }) : { src: member.signature, fit: 'cover', posX: 50, posY: 25, zoom: 1 };
+      const sigBlockHtml = isAvatarSig
+        ? `
+          <div class="sig-area is-avatar" data-src="${escapeHtml(member.signature)}" data-caption="${escapeHtml(member.name)}"
+               onclick="event.stopPropagation(); openLightboxFromEl(this)">
+            <div class="sig-avatar-wrap">
+              <img src="${member.signature}" style="${renderPhotoImgStyle(sigFrameObj)}" alt="${escapeHtml(member.name)}" />
+            </div>
+            <div class="sig-area-label">${escapeHtml(member.name)}</div>
+          </div>
+        `
+        : `
+          <div class="sig-area">
+            ${member.signature ? `<img src="${member.signature}" alt="Signature of ${escapeHtml(member.name)}" />` : ''}
+            <div class="sig-area-label">${escapeHtml(member.name)}</div>
+          </div>
+        `;
+
+      return `
+        <div class="scrap-page ${bgClass}" data-type="member">
+          <div class="sticker" style="${sPosA}">${stickerA}</div>
+          <div class="sticker" style="${sPosB}">${stickerB}</div>
+
+          <div class="member-canvas layout-${layoutIdx}">
+            <div class="polaroid-frame" style="margin-top:${(idx % 3) * 3}px; filter: drop-shadow(0 4px 10px rgba(47,32,21,0.12));"
+                 data-src="${escapeHtml(mainPhotoObj.src)}" data-caption="${escapeHtml(member.name)}"
+                 onclick="event.stopPropagation(); openLightboxFromEl(this)">
+              <div class="washi-tape ${tapeA}" style="top:-10px; left:50%; transform:translateX(-50%) rotate(${extraPhotoTilt * 3}deg);"></div>
+              <div class="polaroid-img-wrap">
+                <img src="${mainPhotoObj.src}" style="${renderPhotoImgStyle(mainPhotoObj)}" alt="${escapeHtml(member.name)}" />
+              </div>
+              <div class="polaroid-cap">${escapeHtml(member.name)}</div>
+              <span class="zoom-hint-badge">🔍</span>
+            </div>
+
+            ${extraPhotosHtml}
+
+            <div class="sticky-note" style="background-color:${member.noteColor || '#fdf6e2'};">
+              <div class="washi-tape ${tapeB}" style="top:-11px; right:12px; width:64px; transform:rotate(${10 + extraNoteTilt * 4}deg);"></div>
+              <p class="wish-body">${linesHtml}</p>
+              <div class="regards-block">
+                <span class="wish-line" style="transition-delay:${220 + lines.length * 170}ms">Best Regards,</span>
+                <span class="wish-line regards-name" style="transition-delay:${340 + lines.length * 170}ms">${escapeHtml(member.name)}</span>
+              </div>
+            </div>
+
+            ${sigBlockHtml}
+          </div>
+          <span class="page-number-tag">${pageNum}</span>
+        </div>
+      `;
+    }
+
+    function buildGalleryPages(startPageNum) {
+      let photos = (appState.galleryPhotos || []).map(g => ({ ...normalizePhotoItem(g.src), caption: g.caption }));
+      if (appState.includeMemberPhotosInGallery !== false) {
+        appState.members.forEach(m => {
+          getMemberPhotos(m).forEach((pObj, pIdx) => {
+            photos.push({ ...pObj, caption: pIdx === 0 ? m.name : `${m.name} (${pIdx + 1})` });
+          });
+        });
+      }
+      if (!photos.length) {
+        photos.push({ ...normalizePhotoItem(appState.coverPhoto), caption: appState.senderTeam });
+      }
+
+      const chunks = [];
+      for (let i = 0; i < photos.length; i += 9) {
+        chunks.push(photos.slice(i, i + 9));
+      }
+
+      return chunks.map((shown, cIdx) => {
+        const sizePx = shown.length <= 4 ? 146 : (shown.length <= 6 ? 120 : 100);
+        const cards = shown.map((p, i) => {
+          const rot = ((i * 11 + cIdx * 3) % 13) - 6;
+          const tape = TAPE_CLASSES[(i + cIdx) % TAPE_CLASSES.length];
+          return `
+            <div class="collage-polaroid" style="width:${sizePx}px; transform:rotate(${rot}deg);"
+                 data-src="${escapeHtml(p.src)}" data-caption="${escapeHtml(p.caption || 'Team Memory')}"
+                 onclick="event.stopPropagation(); openLightboxFromEl(this)">
+              <div class="pin-dot"></div>
+              <div class="washi-tape ${tape}" style="top:-8px; right:-8px; width:44px; height:14px; transform:rotate(25deg);"></div>
+              <div style="width:100%; height:${Math.round(sizePx * 0.85)}px; overflow:hidden;">
+                <img src="${p.src}" style="${renderPhotoImgStyle(p)}" alt="${escapeHtml(p.caption || 'Team')}" />
+              </div>
+              <div class="polaroid-cap" style="font-size:0.68rem;">${escapeHtml(p.caption || 'SHE Moment')}</div>
+            </div>
+          `;
+        }).join('');
+
+        return {
+          type: 'gallery',
+          html: `
+            <div class="scrap-page bg-dotted" data-type="gallery">
+              <div class="washi-tape tape-sage-stripe" style="top:10px; left:16px; transform:rotate(-10deg);"></div>
+              <div class="sticker" style="top:10px; right:14px;">${STICKER_SVGS[3]}</div>
+
+              <div class="gallery-header">
+                <h3>📸 Team Memory Wall${chunks.length > 1 ? ` (${cIdx + 1}/${chunks.length})` : ''}</h3>
+                <p>Nhấn vào ảnh để phóng to kỷ niệm</p>
+              </div>
+              <div class="collage-wall">${cards}</div>
+              <span class="page-number-tag">${startPageNum + cIdx}</span>
+            </div>
+          `
+        };
+      });
+    }
+
+    function buildSignatureWallPages(startPageNum) {
+      const members = appState.members;
+      const chunks = [];
+      for (let i = 0; i < Math.max(1, members.length); i += 15) {
+        chunks.push(members.slice(i, i + 15));
+      }
+
+      return chunks.map((group, cIdx) => {
+        const items = group.map((m, i) => {
+          const isAv = m.sigType === 'avatar' && m.signature;
+          const sigF = m.sigFrame ? normalizePhotoItem({ ...m.sigFrame, src: m.signature }) : { src: m.signature, fit: 'cover', posX: 50, posY: 25, zoom: 1 };
+          return `
+          <div class="sig-wall-card ${isAv ? 'is-avatar' : ''}" style="transform:rotate(${((i % 3) - 1) * 1.4}deg); ${isAv ? 'cursor:zoom-in;' : ''}"
+               ${isAv ? `data-src="${escapeHtml(m.signature)}" data-caption="${escapeHtml(m.name)}" onclick="event.stopPropagation(); openLightboxFromEl(this)"` : ''}>
+            ${m.signature
+              ? (isAv
+                  ? `<div class="sig-wall-avatar-wrap"><img src="${m.signature}" style="${renderPhotoImgStyle(sigF)}" alt="${escapeHtml(m.name)}" /></div>`
+                  : `<img src="${m.signature}" alt="${escapeHtml(m.name)}" />`)
+              : `<div style="height:52px; display:flex; align-items:center; font-family:var(--font-hand); color:var(--brown-soft);">${escapeHtml(m.name)}</div>`}
+            <div class="sig-wall-name">${escapeHtml(m.name)}</div>
+          </div>
+        `;
+        }).join('');
+
+        return {
+          type: 'sigwall',
+          html: `
+            <div class="scrap-page bg-kraft" data-type="sigwall">
+              <div class="washi-tape tape-gingham" style="top:10px; right:18px; transform:rotate(8deg);"></div>
+              <div class="sticker" style="bottom:14px; left:14px;">${STICKER_SVGS[5]}</div>
+
+              <div class="gallery-header">
+                <h3>✒️ Wall of Signatures${chunks.length > 1 ? ` (${cIdx + 1}/${chunks.length})` : ''}</h3>
+                <p>Dấu ấn từ tập thể ${escapeHtml(appState.senderTeam)}</p>
+              </div>
+              <div class="sig-wall-grid">${items}</div>
+              <span class="page-number-tag">${startPageNum + cIdx}</span>
+            </div>
+          `
+        };
+      });
+    }
+
+    function buildEndingPageHTML(pageNum) {
+      const names = appState.members.map(m => `<span class="ending-name-pill">${escapeHtml(m.name)}</span>`).join('');
+      return `
+        <div class="scrap-page ending-page" data-type="ending">
+          <div class="washi-tape tape-pink-dots" style="top:14px; left:18px; transform:rotate(-12deg);"></div>
+          <div class="washi-tape tape-gold-kraft" style="top:14px; right:18px; transform:rotate(12deg);"></div>
+          <div class="sticker" style="bottom:20px; left:20px;">${STICKER_SVGS[0]}</div>
+          <div class="sticker" style="bottom:20px; right:20px;">${STICKER_SVGS[1]}</div>
+
+          <div style="font-size:2.1rem;">💐</div>
+          <h2 class="ending-title">Thank You For Your Leadership</h2>
+          <p class="ending-msg">${escapeHtml(appState.closingWish)}</p>
+          <div class="ending-hb">Happy Birthday!</div>
+          <div style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--brown-soft); margin-bottom:8px;">With love from ${escapeHtml(appState.senderTeam)}</div>
+          <div class="ending-names-wrap">${names}</div>
+          <span class="page-number-tag">${pageNum}</span>
+        </div>
+      `;
+    }
+
+    function buildBackInsideCoverHTML() {
+      return `
+        <div class="scrap-page bg-kraft" style="justify-content:center; align-items:center; text-align:center;">
+          <div style="border:2px dashed rgba(92,67,50,0.3); border-radius:12px; padding:28px; width:82%;">
+            <div style="font-size:1.8rem; margin-bottom:8px;">🕯️✨</div>
+            <div style="font-family:var(--font-hand); font-size:1.2rem; color:var(--brown-deep);">Forever in our memories</div>
+            <p style="font-family:var(--font-serif); font-size:0.85rem; color:var(--brown-soft); margin-top:8px;">${escapeHtml(appState.recipientName)} • ${escapeHtml(appState.birthdayDate)}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function assembleLogicalPages() {
+      const pages = [];
+      let pNum = 1;
+      pages.push({ type: 'opening', html: buildOpeningLetterHTML(pNum++) });
+      appState.members.forEach((m, idx) => {
+        pages.push({ type: 'member', html: buildMemberPageHTML(m, idx, pNum++) });
+      });
+      const galleryPages = buildGalleryPages(pNum);
+      pNum += galleryPages.length;
+      pages.push(...galleryPages);
+
+      const sigPages = buildSignatureWallPages(pNum);
+      pNum += sigPages.length;
+      pages.push(...sigPages);
+
+      pages.push({ type: 'ending', html: buildEndingPageHTML(pNum++) });
+      return pages;
+    }
+
+    /* =========================================================================
+       7. 3D FLIPBOOK ENGINE (2-PAGE SPREAD ON DESKTOP, 1-PAGE ON MOBILE)
+       ========================================================================= */
+    function isSinglePageView() {
+      return forceSingleMode || window.innerWidth < 940;
+    }
+
+    function buildFlipbook() {
+      logicalPages = assembleLogicalPages();
+      const container = document.getElementById('book-container');
+      const single = isSinglePageView();
+      container.classList.toggle('single-mode', single);
+
+      document.getElementById('layout-mode-btn').textContent = single ? '📄 1 Trang' : '📖 2 Trang';
+
+      let sheetsHtml = '';
+
+      if (single) {
+        // Single-page mode: each logical page is its own sheet
+        totalSheets = logicalPages.length;
+        sheetsHtml = logicalPages.map((p, i) => `
+          <div class="sheet" data-sheet="${i}" onclick="onSheetClick(event, ${i})">
+            <div class="sheet-face sheet-front">${p.html}</div>
+            <div class="sheet-face sheet-back"></div>
+          </div>
+        `).join('');
+      } else {
+        // 2-page spread mode:
+        // Base left = Inside Front Cover
+        // Sheet 0 Front = Opening Letter (logical[0]), Sheet 0 Back = Member 1 (logical[1]) ...
+        const numSheets = Math.ceil(logicalPages.length / 2);
+        totalSheets = numSheets;
+        sheetsHtml += `<div class="book-base-left">${buildInsideFrontCoverHTML()}</div>`;
+        sheetsHtml += `<div class="book-base-right-back">${buildBackInsideCoverHTML()}</div>`;
+        sheetsHtml += `<div class="book-spine"></div>`;
+
+        for (let s = 0; s < numSheets; s++) {
+          const frontPage = logicalPages[s * 2];
+          const backPage = logicalPages[s * 2 + 1] || { type: 'backcover', html: buildBackInsideCoverHTML() };
+          sheetsHtml += `
+            <div class="sheet" data-sheet="${s}" onclick="onSheetClick(event, ${s})">
+              <div class="sheet-face sheet-front">${frontPage.html}</div>
+              <div class="sheet-face sheet-back">${backPage.html}</div>
+            </div>
+          `;
+        }
+      }
+
+      container.innerHTML = sheetsHtml;
+      currentSheetIndex = 0;
+      updateBookPositions(true);
+      requestAnimationFrame(fitCardToViewport);
+    }
+
+    function fitCardToViewport() {
+      if (currentMode !== 'card') return;
+
+      const vv = window.visualViewport;
+      const vw = vv ? vv.width : window.innerWidth;
+      const vh = vv ? vv.height : window.innerHeight;
+      const toolbar = document.querySelector('.app-toolbar');
+      const toolbarH = toolbar ? toolbar.getBoundingClientRect().height : 52;
+      const cardEl = document.getElementById('card-view');
+      const cs = cardEl ? getComputedStyle(cardEl) : null;
+      const padX = cs ? (parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)) : 24;
+      const padY = cs ? (parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) : 26;
+
+      const availW = Math.max(260, vw - padX - 4);
+      const availH = Math.max(240, vh - toolbarH - padY);
+
+      // Fit envelope cover if visible
+      const envStage = document.getElementById('envelope-stage');
+      const envWrap = document.getElementById('envelope-wrapper');
+      if (envStage && envWrap && envStage.style.display !== 'none') {
+        envWrap.style.transform = '';
+        envWrap.style.marginBottom = '';
+        const naturalW = envWrap.offsetWidth || 580;
+        const naturalH = envWrap.offsetHeight || 560;
+        const envScale = Math.min(1, availW / naturalW, availH / naturalH);
+        if (envScale < 0.995) {
+          envWrap.style.transformOrigin = 'top center';
+          envWrap.style.transform = `scale(${envScale.toFixed(4)})`;
+          envWrap.style.marginBottom = `${Math.round((envScale - 1) * naturalH)}px`;
+        }
+      }
+
+      // Fit flipbook stage if active
+      const flipStage = document.getElementById('flipbook-stage');
+      const slot = document.getElementById('book-scale-slot');
+      const book = document.getElementById('book-container');
+      if (flipStage && slot && book && flipStage.classList.contains('active')) {
+        const controls = flipStage.querySelector('.book-controls');
+        const controlsH = controls ? controls.getBoundingClientRect().height + 18 : 68;
+        const bookAvailH = Math.max(200, availH - controlsH);
+        const single = isSinglePageView();
+        const baseW = single ? 430 : 980;
+        const baseH = single ? 585 : 620;
+        const scale = Math.min(1, availW / baseW, bookAvailH / baseH);
+
+        slot.style.width = Math.round(baseW * scale) + 'px';
+        slot.style.height = Math.round(baseH * scale) + 'px';
+        book.style.transform = `scale(${scale.toFixed(4)})`;
+      }
+    }
+
+    function onSheetClick(e, sheetIdx) {
+      if (e.target.closest('.collage-polaroid, .polaroid-frame, .polaroid-extra, .sig-area.is-avatar, .sig-wall-card.is-avatar')) return;
+      if (isSinglePageView()) {
+        if (sheetIdx === currentSheetIndex && currentSheetIndex < totalSheets - 1) nextPage();
+        return;
+      }
+      if (sheetIdx >= currentSheetIndex) nextPage();
+      else prevPage();
+    }
+
+    function nextPage() {
+      const maxIndex = isSinglePageView() ? totalSheets - 1 : totalSheets;
+      if (currentSheetIndex >= maxIndex) return;
+      playPageFlipSound();
+      ensureBgMusicPlaying();
+      const turningSheetIdx = currentSheetIndex;
+      currentSheetIndex++;
+      updateBookPositions(false, turningSheetIdx);
+    }
+
+    function prevPage() {
+      if (currentSheetIndex <= 0) return;
+      playPageFlipSound();
+      ensureBgMusicPlaying();
+      currentSheetIndex--;
+      const turningSheetIdx = currentSheetIndex;
+      updateBookPositions(false, turningSheetIdx);
+    }
+
+    function updateBookPositions(initial = false, turningSheetIdx = -1) {
+      const sheets = Array.from(document.querySelectorAll('#book-container .sheet'));
+      const single = isSinglePageView();
+
+      sheets.forEach((sheet, i) => {
+        const isFlipped = i < currentSheetIndex;
+        sheet.classList.toggle('flipped', isFlipped);
+
+        if (i === turningSheetIdx && !initial) {
+          sheet.classList.add('flipping');
+          clearTimeout(sheet._flipTimer);
+          sheet._flipTimer = setTimeout(() => sheet.classList.remove('flipping'), 820);
+        }
+
+        if (single) {
+          sheet.style.zIndex = isFlipped ? (i + 1) : (totalSheets - i + 10);
+        } else {
+          if (isFlipped) {
+            sheet.style.zIndex = i + 2;
+          } else {
+            sheet.style.zIndex = totalSheets - i + 2;
+          }
+        }
+      });
+
+      // Clear active animations & activate visible faces
+      document.querySelectorAll('.scrap-page').forEach(p => p.classList.remove('page-active'));
+      document.querySelectorAll('.hw-word').forEach(w => w.classList.remove('revealed'));
+
+      let endingVisible = false;
+
+      if (single) {
+        const activeSheet = sheets[currentSheetIndex];
+        if (activeSheet) {
+          const pageEl = activeSheet.querySelector('.sheet-front .scrap-page');
+          if (pageEl) activateScrapPage(pageEl);
+          if (pageEl && pageEl.dataset.type === 'ending') endingVisible = true;
+        }
+        document.getElementById('page-indicator').textContent = `Trang ${currentSheetIndex + 1} / ${totalSheets}`;
+        document.getElementById('prev-page-btn').disabled = currentSheetIndex === 0;
+        document.getElementById('next-page-btn').disabled = currentSheetIndex >= totalSheets - 1;
+      } else {
+        // Left visible page is back of (currentSheetIndex - 1), Right visible page is front of (currentSheetIndex)
+        if (currentSheetIndex > 0 && sheets[currentSheetIndex - 1]) {
+          const leftPage = sheets[currentSheetIndex - 1].querySelector('.sheet-back .scrap-page');
+          if (leftPage) {
+            activateScrapPage(leftPage);
+            if (leftPage.dataset.type === 'ending') endingVisible = true;
+          }
+        }
+        if (currentSheetIndex < totalSheets && sheets[currentSheetIndex]) {
+          const rightPage = sheets[currentSheetIndex].querySelector('.sheet-front .scrap-page');
+          if (rightPage) {
+            activateScrapPage(rightPage);
+            if (rightPage.dataset.type === 'ending') endingVisible = true;
+          }
+        }
+
+        const spreadLabel = currentSheetIndex === 0
+          ? `Mở đầu (1 / ${totalSheets + 1})`
+          : `Trang đôi ${currentSheetIndex + 1} / ${totalSheets + 1}`;
+        document.getElementById('page-indicator').textContent = spreadLabel;
+        document.getElementById('prev-page-btn').disabled = currentSheetIndex === 0;
+        document.getElementById('next-page-btn').disabled = currentSheetIndex >= totalSheets;
+      }
+
+      if (endingVisible && !initial) {
+        setTimeout(triggerConfetti, 360);
+      }
+    }
+
+    function activateScrapPage(pageEl) {
+      // Trigger CSS transition reliably on next frame
+      requestAnimationFrame(() => {
+        pageEl.classList.add('page-active');
+        if (pageEl.dataset.type === 'opening') {
+          pageEl.querySelectorAll('.hw-word').forEach(w => w.classList.add('revealed'));
+        }
+      });
+    }
+
+    function toggleSingleSpread() {
+      forceSingleMode = !forceSingleMode;
+      buildFlipbook();
+    }
+
+    /* =========================================================================
+       8. CONFETTI PARTICLE ENGINE (PURE CANVAS)
+       ========================================================================= */
+    let confettiParticles = [];
+    let confettiAnimId = null;
+
+    function triggerConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const palette = ['#d68b96', '#e7c16c', '#a5bd92', '#a93f35', '#f5d6b8', '#b99bd6'];
+      for (let i = 0; i < 130; i++) {
+        confettiParticles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * 0.4,
+          w: 7 + Math.random() * 7,
+          h: 4 + Math.random() * 5,
+          vx: (Math.random() - 0.5) * 4,
+          vy: 2.5 + Math.random() * 4.5,
+          rot: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.2,
+          color: palette[i % palette.length],
+          life: 240 + Math.random() * 90
+        });
+      }
+
+      if (confettiAnimId) return;
+
+      function step() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        confettiParticles = confettiParticles.filter(p => p.life > 0 && p.y < canvas.height + 30);
+        confettiParticles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vRot;
+          p.life--;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = Math.min(1, p.life / 45);
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+
+        if (confettiParticles.length > 0) {
+          confettiAnimId = requestAnimationFrame(step);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          confettiAnimId = null;
+        }
+      }
+      step();
+    }
+
+    /* =========================================================================
+       9. MODE SWITCHING, LIGHTBOX, SWIPE & KEYBOARD
+       ========================================================================= */
+    function switchMode(mode) {
+      if (isViewerOnly) mode = 'card';
+      currentMode = mode;
+      const editorEl = document.getElementById('editor-view');
+      const cardEl = document.getElementById('card-view');
+      const tabEditor = document.getElementById('tab-editor-btn');
+      const tabCard = document.getElementById('tab-card-btn');
+
+      if (mode === 'editor') {
+        stopBgMusic();
+        editorEl.style.display = 'grid';
+        cardEl.classList.remove('active');
+        tabEditor.classList.add('active-tab');
+        tabCard.classList.remove('active-tab');
+        syncBgMusicUI();
+      } else {
+        editorEl.style.display = 'none';
+        cardEl.classList.add('active');
+        tabEditor.classList.remove('active-tab');
+        tabCard.classList.add('active-tab');
+        musicUserPaused = false;
+        renderCardCover();
+        syncBgMusicUI();
+        // Reset back to envelope or keep flipbook refreshed
+        document.getElementById('envelope-stage').style.display = 'flex';
+        document.getElementById('flipbook-stage').classList.remove('active');
+        requestAnimationFrame(fitCardToViewport);
+      }
+    }
+
+    function openLightboxFromEl(el) {
+      openLightbox(el.dataset.src, el.dataset.caption);
+    }
+
+    function openLightbox(src, caption) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').textContent = caption || '';
+      document.getElementById('lightbox').classList.add('open');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
+    /* =========================================================================
+       10. EXPORT PDF & EXPORT STANDALONE HTML CARD
+       ========================================================================= */
+    function exportPDF() {
+      const printWrap = document.getElementById('print-container');
+      const pages = assembleLogicalPages();
+
+      // Cover sheet for PDF Page 1
+      const coverSheet = `
+        <div class="print-sheet scrap-page bg-kraft" style="justify-content:center; align-items:center; text-align:center;">
+          <div class="cover-happy">Happy Birthday</div>
+          <h1 class="cover-recipient">${escapeHtml(appState.recipientName)}</h1>
+          <p class="cover-subtitle">${escapeHtml(appState.recipientTitle)} • ${escapeHtml(appState.birthdayDate)}</p>
+          <div class="cover-polaroid" style="max-width:290px;">
+            <img src="${appState.coverPhoto || ''}" alt="Cover" style="height:195px;" />
+            <div class="cover-polaroid-caption">Memories with ${escapeHtml(appState.senderTeam)}</div>
+          </div>
+          <div class="cover-from">From ${escapeHtml(appState.senderTeam)}</div>
+        </div>
+      `;
+
+      const innerSheets = pages.map(p => `<div class="print-sheet">${p.html}</div>`).join('');
+      printWrap.innerHTML = coverSheet + innerSheets;
+
+      showToast('Đang mở hộp thoại in PDF — chọn "Save as PDF" & bật "Background graphics"!');
+      setTimeout(() => window.print(), 260);
+    }
+
+    function exportHTMLCard() {
+      try {
+        // Clone current document cleanly without transient state
+        const docClone = document.documentElement.cloneNode(true);
+
+        // Reset transient UI inside clone
+        const toast = docClone.querySelector('#toast');
+        if (toast) { toast.className = 'toast'; toast.textContent = ''; }
+        const printC = docClone.querySelector('#print-container');
+        if (printC) printC.innerHTML = '';
+        const bookC = docClone.querySelector('#book-container');
+        if (bookC) { bookC.innerHTML = ''; bookC.style.transform = ''; }
+        const modal = docClone.querySelector('#member-modal');
+        if (modal) modal.classList.remove('open');
+        const lb = docClone.querySelector('#lightbox');
+        if (lb) lb.classList.remove('open');
+        const bgAudioClone = docClone.querySelector('#bg-music-player');
+        if (bgAudioClone) { bgAudioClone.removeAttribute('src'); }
+        const musicBtnClone = docClone.querySelector('#music-toggle-btn');
+        if (musicBtnClone) {
+          musicBtnClone.style.display = appState.bgMusic ? 'inline-flex' : 'none';
+          musicBtnClone.textContent = '🎵 Nhạc: Tắt';
+        }
+
+        // Ensure envelope is visible & flipbook hidden on fresh recipient load
+        const cloneBody = docClone.querySelector('body');
+        if (cloneBody) cloneBody.classList.add('viewer-only');
+        const envStage = docClone.querySelector('#envelope-stage');
+        if (envStage) envStage.style.display = 'flex';
+        const envWrap = docClone.querySelector('#envelope-wrapper');
+        if (envWrap) {
+          envWrap.classList.remove('opening');
+          envWrap.style.transform = '';
+          envWrap.style.marginBottom = '';
+        }
+        const slot = docClone.querySelector('#book-scale-slot');
+        if (slot) { slot.style.width = ''; slot.style.height = ''; }
+        const flipStage = docClone.querySelector('#flipbook-stage');
+        if (flipStage) flipStage.classList.remove('active');
+        const cardView = docClone.querySelector('#card-view');
+        if (cardView) cardView.classList.add('active');
+        const editorView = docClone.querySelector('#editor-view');
+        if (editorView) editorView.style.display = 'none';
+
+        // Embed full JSON state (all Base64 images included), escaping '<' safely
+        const safeJson = JSON.stringify(appState).replace(/</g, '\\u003c');
+        const embeddedScript = docClone.querySelector('#embedded-card-data');
+        if (embeddedScript) embeddedScript.textContent = safeJson;
+
+        // Update page title & viewer brand label
+        const titleEl = docClone.querySelector('title');
+        if (titleEl) titleEl.textContent = `Happy Birthday ${appState.recipientName} — From ${appState.senderTeam}`;
+        const brandLabel = docClone.querySelector('.brand-title > span:first-child');
+        if (brandLabel) brandLabel.textContent = '📒 Memory Book';
+        const badgeEl = docClone.querySelector('#toolbar-recipient-badge');
+        if (badgeEl) badgeEl.textContent = appState.recipientName || 'Birthday Card';
+
+        const finalHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
+        const blob = new Blob([finalHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const slug = (appState.recipientName || 'birthday-card')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        a.href = url;
+        a.download = `happy-birthday-${slug || 'scrapbook'}.html`;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          a.remove();
+          URL.revokeObjectURL(url);
+        }, 2500);
+        showToast('Đã xuất file HTML hoàn chỉnh (đã nhúng toàn bộ ảnh Base64)!');
+      } catch (err) {
+        console.error('exportHTMLCard failed:', err);
+        showToast('Lỗi khi xuất HTML: ' + (err && err.message ? err.message : err));
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 3600);
+    }
+
+    /* =========================================================================
+       11. BOOTSTRAP & EVENT LISTENERS
+       ========================================================================= */
+    window.addEventListener('DOMContentLoaded', () => {
+      loadInitialState();
+      initSigPad();
+      initFramerDrag();
+
+      if (!isViewerOnly) {
+        renderEditor();
+
+        bindDropzone('cover-dropzone', 'cover-file-input', async ([file]) => {
+          appState.coverPhoto = await readImageCompressed(file, false);
+          persistState();
+          renderEditor();
+          showToast('Đã cập nhật ảnh bìa!');
+        });
+
+        bindDropzone('gallery-dropzone', 'gallery-file-input', async (files) => {
+          for (const f of files) {
+            const src = await readImageCompressed(f, false);
+            appState.galleryPhotos.push({
+              id: 'g_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5),
+              caption: f.name.replace(/\.[^.]+$/, ''),
+              src
+            });
+          }
+          persistState();
+          renderEditor();
+          showToast(`Đã thêm ${files.length} ảnh vào Gallery Team!`);
+        }, true);
+
+        bindDropzone('member-photo-dropzone', 'member-photo-input', async (files) => {
+          for (const f of files) {
+            if (modalPhotos.length >= 3) {
+              showToast('Tối đa 3 ảnh trên mỗi trang thành viên (đã đủ 3 ảnh).');
+              break;
+            }
+            const src = await readImageCompressed(f, false);
+            modalPhotos.push(normalizePhotoItem(src));
+            activeFramerTarget = `photo:${modalPhotos.length - 1}`;
+          }
+          renderModalPreviews();
+        }, true);
+
+        bindDropzone('member-sig-dropzone', 'member-sig-input', async ([file]) => {
+          const isPng = file.type === 'image/png' || /\.png$/i.test(file.name || '');
+          modalSigData = await readImageCompressed(file, isPng);
+          // Non-PNG uploads (e.g. JPG portraits) default to Author Avatar mode automatically
+          if (!isPng) {
+            modalSigType = 'avatar';
+            activeFramerTarget = 'sig';
+          } else if (modalSigType === 'avatar') {
+            activeFramerTarget = 'sig';
+          }
+          renderModalPreviews();
+        });
+
+        bindDropzone('music-dropzone', 'music-file-input', async ([file]) => {
+          appState.bgMusic = await readAudioDataUrl(file);
+          appState.bgMusicName = file.name || 'nhac-nen.mp3';
+          persistState();
+          renderEditor();
+          showToast(`Đã tải nhạc nền: ${appState.bgMusicName}`);
+        }, false, f => f.type.startsWith('audio/') || /\.mp3$/i.test(f.name || ''));
+
+        switchMode('editor');
+      } else {
+        switchMode('card');
+      }
+
+      // Keyboard navigation in flipbook
+      window.addEventListener('keydown', (e) => {
+        if (currentMode !== 'card') return;
+        if (!document.getElementById('flipbook-stage').classList.contains('active')) return;
+        if (e.key === 'ArrowRight') nextPage();
+        if (e.key === 'ArrowLeft') prevPage();
+      });
+
+      // Touch swipe navigation on mobile/tablet
+      let touchStartX = 0;
+      const bookEl = document.getElementById('book-container');
+      bookEl.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      bookEl.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(dx) > 48) {
+          if (dx < 0) nextPage();
+          else prevPage();
+        }
+      }, { passive: true });
+
+      // Responsive rebuild on breakpoint cross + viewport fit (iPhone rotation / Safari bar)
+      let lastSingle = isSinglePageView();
+      const handleViewportChange = () => {
+        const nowSingle = isSinglePageView();
+        if (nowSingle !== lastSingle && document.getElementById('flipbook-stage').classList.contains('active')) {
+          lastSingle = nowSingle;
+          buildFlipbook();
+        } else {
+          fitCardToViewport();
+        }
+      };
+      window.addEventListener('resize', handleViewportChange);
+      window.addEventListener('orientationchange', () => setTimeout(handleViewportChange, 120));
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', fitCardToViewport);
+      }
+    });
+  </script>
+</body>
+</html>
