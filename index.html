@@ -65,9 +65,7 @@
         max(16px, env(safe-area-inset-right))
         10px
         max(16px, env(safe-area-inset-left));
-      background: rgba(251, 245, 233, 0.94);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(251, 245, 233, 0.96);
       border-bottom: 1px solid rgba(123, 94, 71, 0.2);
       box-shadow: 0 3px 14px rgba(47, 32, 21, 0.08);
     }
@@ -826,7 +824,6 @@
       height: 620px;
       transform-origin: top left;
       transform-style: preserve-3d;
-      transition: transform 0.25s ease;
     }
 
     .book-base-left {
@@ -1073,7 +1070,6 @@
       position: absolute;
       z-index: 18;
       pointer-events: none;
-      filter: drop-shadow(0 3px 4px rgba(47, 32, 21, 0.2));
     }
 
     /* Polaroid Component */
@@ -1804,6 +1800,7 @@
 
     /* Confetti Canvas */
     #confetti-canvas {
+      display: none;
       position: fixed;
       inset: 0;
       width: 100%;
@@ -2192,7 +2189,7 @@
   </div>
 
   <!-- BACKGROUND MUSIC PLAYER -->
-  <audio id="bg-music-player" loop playsinline preload="auto"></audio>
+  <audio id="bg-music-player" loop playsinline preload="none"></audio>
 
   <!-- PRINT / PDF CONTAINER -->
   <div id="print-container"></div>
@@ -2453,7 +2450,7 @@
           const img = new Image();
           img.onerror = () => resolve(reader.result);
           img.onload = () => {
-            const maxDim = 1100;
+            const maxDim = 880;
             let w = img.width, h = img.height;
             if (w > maxDim || h > maxDim) {
               if (w >= h) { h = Math.round(h * maxDim / w); w = maxDim; }
@@ -2463,7 +2460,7 @@
             canvas.width = w;
             canvas.height = h;
             canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-            resolve(canvas.toDataURL(file.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.84));
+            resolve(canvas.toDataURL('image/jpeg', 0.80));
           };
           img.src = reader.result;
         };
@@ -2930,6 +2927,7 @@
     let sigHasInk = false;
     function initSigPad() {
       const canvas = document.getElementById('sig-pad');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
@@ -2975,6 +2973,7 @@
 
     function clearSigPad() {
       const canvas = document.getElementById('sig-pad');
+      if (!canvas) return;
       canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
       sigHasInk = false;
     }
@@ -3122,7 +3121,6 @@
       document.getElementById('cover-photo-img').src = coverSrc;
       const coverBox = document.getElementById('cover-polaroid-box');
       if (coverBox) {
-        coverBox.dataset.src = coverSrc;
         coverBox.dataset.caption = caption;
       }
     }
@@ -3223,11 +3221,11 @@
         const cap = `${member.name} • Kỷ niệm ${eIdx + 2}`;
         return `
           <div class="polaroid-extra polaroid-extra-${eIdx + 1}"
-               data-src="${escapeHtml(pObj.src)}" data-caption="${escapeHtml(cap)}"
+               data-caption="${escapeHtml(cap)}"
                onclick="event.stopPropagation(); openLightboxFromEl(this)">
             <div class="washi-tape ${tapeE}" style="top:-8px; left:50%; transform:translateX(-50%) rotate(${eIdx === 0 ? -4 : 5}deg); width:46px; height:14px;"></div>
             <div class="polaroid-img-wrap">
-              <img src="${pObj.src}" style="${renderPhotoImgStyle(pObj)}" alt="${escapeHtml(cap)}" />
+              <img src="${pObj.src}" decoding="async" style="${renderPhotoImgStyle(pObj)}" alt="${escapeHtml(cap)}" />
             </div>
             <span class="zoom-hint-badge" style="bottom:1px; right:4px; font-size:0.6rem;">🔍</span>
           </div>
@@ -3238,17 +3236,17 @@
       const sigFrameObj = member.sigFrame ? normalizePhotoItem({ ...member.sigFrame, src: member.signature }) : { src: member.signature, fit: 'cover', posX: 50, posY: 25, zoom: 1 };
       const sigBlockHtml = isAvatarSig
         ? `
-          <div class="sig-area is-avatar" data-src="${escapeHtml(member.signature)}" data-caption="${escapeHtml(member.name)}"
+          <div class="sig-area is-avatar" data-caption="${escapeHtml(member.name)}"
                onclick="event.stopPropagation(); openLightboxFromEl(this)">
             <div class="sig-avatar-wrap">
-              <img src="${member.signature}" style="${renderPhotoImgStyle(sigFrameObj)}" alt="${escapeHtml(member.name)}" />
+              <img src="${member.signature}" decoding="async" style="${renderPhotoImgStyle(sigFrameObj)}" alt="${escapeHtml(member.name)}" />
             </div>
             <div class="sig-area-label">${escapeHtml(member.name)}</div>
           </div>
         `
         : `
           <div class="sig-area">
-            ${member.signature ? `<img src="${member.signature}" alt="Signature of ${escapeHtml(member.name)}" />` : ''}
+            ${member.signature ? `<img src="${member.signature}" decoding="async" alt="Signature of ${escapeHtml(member.name)}" />` : ''}
             <div class="sig-area-label">${escapeHtml(member.name)}</div>
           </div>
         `;
@@ -3259,12 +3257,12 @@
           <div class="sticker" style="${sPosB}">${stickerB}</div>
 
           <div class="member-canvas layout-${layoutIdx}">
-            <div class="polaroid-frame" style="margin-top:${(idx % 3) * 3}px; filter: drop-shadow(0 4px 10px rgba(47,32,21,0.12));"
-                 data-src="${escapeHtml(mainPhotoObj.src)}" data-caption="${escapeHtml(member.name)}"
+            <div class="polaroid-frame" style="margin-top:${(idx % 3) * 3}px;"
+                 data-caption="${escapeHtml(member.name)}"
                  onclick="event.stopPropagation(); openLightboxFromEl(this)">
               <div class="washi-tape ${tapeA}" style="top:-10px; left:50%; transform:translateX(-50%) rotate(${extraPhotoTilt * 3}deg);"></div>
               <div class="polaroid-img-wrap">
-                <img src="${mainPhotoObj.src}" style="${renderPhotoImgStyle(mainPhotoObj)}" alt="${escapeHtml(member.name)}" />
+                <img src="${mainPhotoObj.src}" decoding="async" style="${renderPhotoImgStyle(mainPhotoObj)}" alt="${escapeHtml(member.name)}" />
               </div>
               <div class="polaroid-cap">${escapeHtml(member.name)}</div>
               <span class="zoom-hint-badge">🔍</span>
@@ -3313,12 +3311,12 @@
           const tape = TAPE_CLASSES[(i + cIdx) % TAPE_CLASSES.length];
           return `
             <div class="collage-polaroid" style="width:${sizePx}px; transform:rotate(${rot}deg);"
-                 data-src="${escapeHtml(p.src)}" data-caption="${escapeHtml(p.caption || 'Team Memory')}"
+                 data-caption="${escapeHtml(p.caption || 'Team Memory')}"
                  onclick="event.stopPropagation(); openLightboxFromEl(this)">
               <div class="pin-dot"></div>
               <div class="washi-tape ${tape}" style="top:-8px; right:-8px; width:44px; height:14px; transform:rotate(25deg);"></div>
               <div style="width:100%; height:${Math.round(sizePx * 0.85)}px; overflow:hidden;">
-                <img src="${p.src}" style="${renderPhotoImgStyle(p)}" alt="${escapeHtml(p.caption || 'Team')}" />
+                <img src="${p.src}" decoding="async" style="${renderPhotoImgStyle(p)}" alt="${escapeHtml(p.caption || 'Team')}" />
               </div>
               <div class="polaroid-cap" style="font-size:0.68rem;">${escapeHtml(p.caption || 'SHE Moment')}</div>
             </div>
@@ -3357,11 +3355,11 @@
           const sigF = m.sigFrame ? normalizePhotoItem({ ...m.sigFrame, src: m.signature }) : { src: m.signature, fit: 'cover', posX: 50, posY: 25, zoom: 1 };
           return `
           <div class="sig-wall-card ${isAv ? 'is-avatar' : ''}" style="transform:rotate(${((i % 3) - 1) * 1.4}deg); ${isAv ? 'cursor:zoom-in;' : ''}"
-               ${isAv ? `data-src="${escapeHtml(m.signature)}" data-caption="${escapeHtml(m.name)}" onclick="event.stopPropagation(); openLightboxFromEl(this)"` : ''}>
+               ${isAv ? `data-caption="${escapeHtml(m.name)}" onclick="event.stopPropagation(); openLightboxFromEl(this)"` : ''}>
             ${m.signature
               ? (isAv
-                  ? `<div class="sig-wall-avatar-wrap"><img src="${m.signature}" style="${renderPhotoImgStyle(sigF)}" alt="${escapeHtml(m.name)}" /></div>`
-                  : `<img src="${m.signature}" alt="${escapeHtml(m.name)}" />`)
+                  ? `<div class="sig-wall-avatar-wrap"><img src="${m.signature}" decoding="async" style="${renderPhotoImgStyle(sigF)}" alt="${escapeHtml(m.name)}" /></div>`
+                  : `<img src="${m.signature}" decoding="async" alt="${escapeHtml(m.name)}" />`)
               : `<div style="height:52px; display:flex; align-items:center; font-family:var(--font-hand); color:var(--brown-soft);">${escapeHtml(m.name)}</div>`}
             <div class="sig-wall-name">${escapeHtml(m.name)}</div>
           </div>
@@ -3445,6 +3443,8 @@
       return forceSingleMode || window.innerWidth < 940;
     }
 
+    let sheetModels = [];
+
     function buildFlipbook() {
       logicalPages = assembleLogicalPages();
       const container = document.getElementById('book-container');
@@ -3454,20 +3454,18 @@
       document.getElementById('layout-mode-btn').textContent = single ? '📄 1 Trang' : '📖 2 Trang';
 
       let sheetsHtml = '';
+      sheetModels = [];
 
       if (single) {
-        // Single-page mode: each logical page is its own sheet
         totalSheets = logicalPages.length;
-        sheetsHtml = logicalPages.map((p, i) => `
-          <div class="sheet" data-sheet="${i}" onclick="onSheetClick(event, ${i})">
-            <div class="sheet-face sheet-front">${p.html}</div>
+        sheetModels = logicalPages.map(p => ({ frontHtml: p.html, backHtml: '' }));
+        sheetsHtml = sheetModels.map((_, i) => `
+          <div class="sheet" data-sheet="${i}" data-mounted="0" onclick="onSheetClick(event, ${i})">
+            <div class="sheet-face sheet-front"></div>
             <div class="sheet-face sheet-back"></div>
           </div>
         `).join('');
       } else {
-        // 2-page spread mode:
-        // Base left = Inside Front Cover
-        // Sheet 0 Front = Opening Letter (logical[0]), Sheet 0 Back = Member 1 (logical[1]) ...
         const numSheets = Math.ceil(logicalPages.length / 2);
         totalSheets = numSheets;
         sheetsHtml += `<div class="book-base-left">${buildInsideFrontCoverHTML()}</div>`;
@@ -3477,10 +3475,11 @@
         for (let s = 0; s < numSheets; s++) {
           const frontPage = logicalPages[s * 2];
           const backPage = logicalPages[s * 2 + 1] || { type: 'backcover', html: buildBackInsideCoverHTML() };
+          sheetModels.push({ frontHtml: frontPage.html, backHtml: backPage.html });
           sheetsHtml += `
-            <div class="sheet" data-sheet="${s}" onclick="onSheetClick(event, ${s})">
-              <div class="sheet-face sheet-front">${frontPage.html}</div>
-              <div class="sheet-face sheet-back">${backPage.html}</div>
+            <div class="sheet" data-sheet="${s}" data-mounted="0" onclick="onSheetClick(event, ${s})">
+              <div class="sheet-face sheet-front"></div>
+              <div class="sheet-face sheet-back"></div>
             </div>
           `;
         }
@@ -3575,8 +3574,33 @@
     function updateBookPositions(initial = false, turningSheetIdx = -1) {
       const sheets = Array.from(document.querySelectorAll('#book-container .sheet'));
       const single = isSinglePageView();
+      const windowRadius = single ? 1 : 2;
 
       sheets.forEach((sheet, i) => {
+        const dist = Math.abs(i - currentSheetIndex);
+        const near = dist <= windowRadius || i === turningSheetIdx;
+
+        // Windowed DOM mounting keeps iOS Safari WebKit GPU/image memory tiny
+        if (near) {
+          if (sheet.dataset.mounted !== '1' && sheetModels[i]) {
+            const frontEl = sheet.querySelector('.sheet-front');
+            const backEl = sheet.querySelector('.sheet-back');
+            if (frontEl) frontEl.innerHTML = sheetModels[i].frontHtml;
+            if (backEl) backEl.innerHTML = sheetModels[i].backHtml;
+            sheet.dataset.mounted = '1';
+          }
+          sheet.style.display = '';
+        } else {
+          if (sheet.dataset.mounted === '1') {
+            const frontEl = sheet.querySelector('.sheet-front');
+            const backEl = sheet.querySelector('.sheet-back');
+            if (frontEl) frontEl.innerHTML = '';
+            if (backEl) backEl.innerHTML = '';
+            sheet.dataset.mounted = '0';
+          }
+          if (single) sheet.style.display = 'none';
+        }
+
         const isFlipped = i < currentSheetIndex;
         sheet.classList.toggle('flipped', isFlipped);
 
@@ -3666,12 +3690,13 @@
 
     function triggerConfetti() {
       const canvas = document.getElementById('confetti-canvas');
+      canvas.style.display = 'block';
       const ctx = canvas.getContext('2d');
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
       const palette = ['#d68b96', '#e7c16c', '#a5bd92', '#a93f35', '#f5d6b8', '#b99bd6'];
-      for (let i = 0; i < 130; i++) {
+      for (let i = 0; i < 110; i++) {
         confettiParticles.push({
           x: Math.random() * canvas.width,
           y: -20 - Math.random() * canvas.height * 0.4,
@@ -3709,6 +3734,9 @@
           confettiAnimId = requestAnimationFrame(step);
         } else {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
+          canvas.width = 0;
+          canvas.height = 0;
+          canvas.style.display = 'none';
           confettiAnimId = null;
         }
       }
@@ -3728,16 +3756,16 @@
 
       if (mode === 'editor') {
         stopBgMusic();
-        editorEl.style.display = 'grid';
+        if (editorEl) editorEl.style.display = 'grid';
         cardEl.classList.remove('active');
-        tabEditor.classList.add('active-tab');
-        tabCard.classList.remove('active-tab');
+        if (tabEditor) tabEditor.classList.add('active-tab');
+        if (tabCard) tabCard.classList.remove('active-tab');
         syncBgMusicUI();
       } else {
-        editorEl.style.display = 'none';
+        if (editorEl) editorEl.style.display = 'none';
         cardEl.classList.add('active');
-        tabEditor.classList.remove('active-tab');
-        tabCard.classList.add('active-tab');
+        if (tabEditor) tabEditor.classList.remove('active-tab');
+        if (tabCard) tabCard.classList.add('active-tab');
         musicUserPaused = false;
         renderCardCover();
         syncBgMusicUI();
@@ -3749,7 +3777,10 @@
     }
 
     function openLightboxFromEl(el) {
-      openLightbox(el.dataset.src, el.dataset.caption);
+      const img = el.querySelector('img');
+      const src = (img && img.getAttribute('src')) || el.dataset.src || '';
+      if (!src) return;
+      openLightbox(src, el.dataset.caption);
     }
 
     function openLightbox(src, caption) {
@@ -3790,8 +3821,61 @@
       setTimeout(() => window.print(), 260);
     }
 
-    function exportHTMLCard() {
+    function shrinkDataUrlForMobile(dataUrl, maxDim = 860, keepPng = false) {
+      if (!dataUrl || typeof dataUrl !== 'string' || !dataUrl.startsWith('data:image/') || dataUrl.startsWith('data:image/svg')) {
+        return Promise.resolve(dataUrl);
+      }
+      if (dataUrl.length <= 160000) return Promise.resolve(dataUrl);
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onerror = () => resolve(dataUrl);
+        img.onload = () => {
+          let w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w >= h) { h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          const out = canvas.toDataURL(keepPng ? 'image/png' : 'image/jpeg', 0.78);
+          resolve(out.length < dataUrl.length ? out : dataUrl);
+        };
+        img.src = dataUrl;
+      });
+    }
+
+    async function exportHTMLCard() {
       try {
+        showToast('Đang tối ưu ảnh & đóng gói thiệp HTML cho điện thoại...');
+        // Deep clone state and downscale any oversized images so iOS Safari never hits memory limit
+        const exportState = JSON.parse(JSON.stringify(appState));
+        exportState.coverPhoto = await shrinkDataUrlForMobile(exportState.coverPhoto, 880, false);
+        if (Array.isArray(exportState.galleryPhotos)) {
+          for (const g of exportState.galleryPhotos) {
+            g.src = await shrinkDataUrlForMobile(g.src, 840, false);
+          }
+        }
+        if (Array.isArray(exportState.members)) {
+          for (const m of exportState.members) {
+            if (m.photo) m.photo = await shrinkDataUrlForMobile(m.photo, 840, false);
+            if (Array.isArray(m.photos)) {
+              for (let i = 0; i < m.photos.length; i++) {
+                if (typeof m.photos[i] === 'string') {
+                  m.photos[i] = await shrinkDataUrlForMobile(m.photos[i], 840, false);
+                } else if (m.photos[i] && m.photos[i].src) {
+                  m.photos[i].src = await shrinkDataUrlForMobile(m.photos[i].src, 840, false);
+                }
+              }
+              if (m.photos[0]) m.photo = typeof m.photos[0] === 'string' ? m.photos[0] : m.photos[0].src;
+            }
+            if (m.signature) {
+              m.signature = await shrinkDataUrlForMobile(m.signature, m.sigType === 'avatar' ? 420 : 520, m.sigType !== 'avatar');
+            }
+          }
+        }
+
         // Clone current document cleanly without transient state
         const docClone = document.documentElement.cloneNode(true);
 
@@ -3802,10 +3886,17 @@
         if (printC) printC.innerHTML = '';
         const bookC = docClone.querySelector('#book-container');
         if (bookC) { bookC.innerHTML = ''; bookC.style.transform = ''; }
+        // Remove editor-only & modal DOM completely from exported card so iOS Safari never holds duplicate images/audio in memory
+        const editorView = docClone.querySelector('#editor-view');
+        if (editorView) editorView.remove();
         const modal = docClone.querySelector('#member-modal');
-        if (modal) modal.classList.remove('open');
+        if (modal) modal.remove();
         const lb = docClone.querySelector('#lightbox');
         if (lb) lb.classList.remove('open');
+        const lbImg = docClone.querySelector('#lightbox-img');
+        if (lbImg) lbImg.removeAttribute('src');
+        const coverImgClone = docClone.querySelector('#cover-photo-img');
+        if (coverImgClone) coverImgClone.removeAttribute('src');
         const bgAudioClone = docClone.querySelector('#bg-music-player');
         if (bgAudioClone) { bgAudioClone.removeAttribute('src'); }
         const musicBtnClone = docClone.querySelector('#music-toggle-btn');
@@ -3831,11 +3922,9 @@
         if (flipStage) flipStage.classList.remove('active');
         const cardView = docClone.querySelector('#card-view');
         if (cardView) cardView.classList.add('active');
-        const editorView = docClone.querySelector('#editor-view');
-        if (editorView) editorView.style.display = 'none';
 
-        // Embed full JSON state (all Base64 images included), escaping '<' safely
-        const safeJson = JSON.stringify(appState).replace(/</g, '\\u003c');
+        // Embed optimized JSON state (all Base64 images & MP3 included), escaping '<' safely
+        const safeJson = JSON.stringify(exportState).replace(/</g, '\\u003c');
         const embeddedScript = docClone.querySelector('#embedded-card-data');
         if (embeddedScript) embeddedScript.textContent = safeJson;
 
