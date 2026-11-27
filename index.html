@@ -906,15 +906,17 @@
       box-shadow: -6px 12px 28px rgba(47, 32, 21, 0.16), inset -18px 0 26px rgba(92, 67, 50, 0.1);
     }
 
-    /* Single-page mode (Mobile / Tablet: 430x585 base canvas, auto-scaled cleanly to any iPhone/Android viewport) */
+    /* Single-page mode (Mobile / Tablet: 430x585 base canvas, flat stacking so iOS Safari never 3D-culls rotated elements) */
     .book-container.single-mode {
       width: 430px;
       height: 585px;
+      transform-style: flat;
     }
 
     .book-container.single-mode .book-base-left,
     .book-container.single-mode .book-spine,
-    .book-container.single-mode .book-base-right-back {
+    .book-container.single-mode .book-base-right-back,
+    .book-container.single-mode .sheet-back {
       display: none;
     }
 
@@ -922,6 +924,13 @@
       width: 100%;
       left: 0;
       right: auto;
+      transform-style: flat;
+      transition: transform 0.52s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.42s ease;
+    }
+
+    .book-container.single-mode .sheet-face {
+      backface-visibility: visible;
+      -webkit-backface-visibility: visible;
     }
 
     .book-container.single-mode .sheet-front {
@@ -930,7 +939,7 @@
     }
 
     .book-container.single-mode .sheet.flipped {
-      transform: rotateY(-115deg) translateX(-12%);
+      transform: translateX(-106%) rotate(-3deg);
       opacity: 0;
       pointer-events: none;
     }
@@ -986,6 +995,7 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      isolation: isolate;
       background-color: var(--paper-cream);
       box-shadow: inset 0 0 42px rgba(139, 107, 82, 0.13);
     }
@@ -1360,18 +1370,25 @@
       margin: 0;
     }
 
+    @keyframes wishReveal {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Line-by-line reveal animation */
     .wish-line {
       display: block;
       opacity: 0;
-      transform: translateY(7px);
-      transition: opacity 0.52s ease, transform 0.52s ease;
     }
 
-    .page-active .wish-line,
+    .page-active .wish-line {
+      animation: wishReveal 0.42s ease both;
+    }
+
     .print-sheet .wish-line {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
     }
 
     .regards-block {
@@ -1466,9 +1483,9 @@
     /* ================= 8 NON-REPEATING MEMBER PAGE LAYOUTS ================= */
     .member-canvas {
       position: relative;
-      flex: 1;
+      flex: 1 1 auto;
+      min-height: 0;
       width: 100%;
-      height: 100%;
     }
 
     /* Layout 0: Top-left tilted polaroid, bottom-right note, bottom-left sig */
@@ -1627,14 +1644,17 @@
     .hw-word {
       display: inline-block;
       opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.28s ease, transform 0.28s ease;
     }
 
-    .hw-word.revealed,
+    .page-active .hw-word,
+    .hw-word.revealed {
+      animation: wishReveal 0.28s ease both;
+    }
+
     .print-sheet .hw-word {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
     }
 
     /* ================= PART 5: TEAM GALLERY COLLAGE ================= */
@@ -3168,7 +3188,7 @@
     function buildOpeningLetterHTML(pageNum) {
       const firstName = (appState.recipientName || 'Armand').split(' ')[0];
       const words = (appState.introWish || '').split(/\s+/).filter(Boolean);
-      const wordsHtml = words.map((w, i) => `<span class="hw-word" style="transition-delay:${i * 75}ms">${escapeHtml(w)}</span>`).join(' ');
+      const wordsHtml = words.map((w, i) => `<span class="hw-word" style="animation-delay:${i * 65}ms">${escapeHtml(w)}</span>`).join(' ');
 
       return `
         <div class="scrap-page bg-lined opening-page" data-type="opening">
@@ -3202,7 +3222,7 @@
 
       const lines = (member.wish || '').split(/\r?\n/).filter(l => l.trim().length > 0);
       const linesHtml = lines.map((line, lIdx) =>
-        `<span class="wish-line" style="transition-delay:${180 + lIdx * 170}ms">${escapeHtml(line)}</span>`
+        `<span class="wish-line" style="animation-delay:${90 + lIdx * 115}ms">${escapeHtml(line)}</span>`
       ).join('');
 
       const stickerPositions = [
@@ -3274,8 +3294,8 @@
               <div class="washi-tape ${tapeB}" style="top:-11px; right:12px; width:64px; transform:rotate(${10 + extraNoteTilt * 4}deg);"></div>
               <p class="wish-body">${linesHtml}</p>
               <div class="regards-block">
-                <span class="wish-line" style="transition-delay:${220 + lines.length * 170}ms">Best Regards,</span>
-                <span class="wish-line regards-name" style="transition-delay:${340 + lines.length * 170}ms">${escapeHtml(member.name)}</span>
+                <span class="wish-line" style="animation-delay:${120 + lines.length * 115}ms">Best Regards,</span>
+                <span class="wish-line regards-name" style="animation-delay:${210 + lines.length * 115}ms">${escapeHtml(member.name)}</span>
               </div>
             </div>
 
@@ -3407,7 +3427,7 @@
 
     function buildBackInsideCoverHTML() {
       return `
-        <div class="scrap-page bg-kraft" style="justify-content:center; align-items:center; text-align:center;">
+        <div class="scrap-page bg-kraft" data-type="backcover" style="justify-content:center; align-items:center; text-align:center;">
           <div style="border:2px dashed rgba(92,67,50,0.3); border-radius:12px; padding:28px; width:82%;">
             <div style="font-size:1.8rem; margin-bottom:8px;">🕯️✨</div>
             <div style="font-family:var(--font-hand); font-size:1.2rem; color:var(--brown-deep);">Forever in our memories</div>
@@ -3621,8 +3641,11 @@
         }
       });
 
-      // Clear active animations & activate visible faces
-      document.querySelectorAll('.scrap-page').forEach(p => p.classList.remove('page-active'));
+      // Clear active animations & cancel pending activation frames before activating visible faces
+      document.querySelectorAll('.scrap-page').forEach(p => {
+        if (p._actRaf) { cancelAnimationFrame(p._actRaf); p._actRaf = null; }
+        p.classList.remove('page-active');
+      });
       document.querySelectorAll('.hw-word').forEach(w => w.classList.remove('revealed'));
 
       let endingVisible = false;
@@ -3668,13 +3691,11 @@
     }
 
     function activateScrapPage(pageEl) {
-      // Trigger CSS transition reliably on next frame
-      requestAnimationFrame(() => {
-        pageEl.classList.add('page-active');
-        if (pageEl.dataset.type === 'opening') {
-          pageEl.querySelectorAll('.hw-word').forEach(w => w.classList.add('revealed'));
-        }
-      });
+      if (!pageEl) return;
+      pageEl.classList.add('page-active');
+      if (pageEl.dataset.type === 'opening') {
+        pageEl.querySelectorAll('.hw-word').forEach(w => w.classList.add('revealed'));
+      }
     }
 
     function toggleSingleSpread() {
